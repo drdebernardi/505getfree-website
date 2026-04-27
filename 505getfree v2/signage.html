@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandatory Signage · 505 GET FREE</title>
+  <meta name="description" content="New Mexico requires businesses subject to minimum wage to post the 505 GET FREE hotline. Download the official poster here.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/spa.css">
+
+  <style>
+    /* Law block */
+    .law-split{
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .law-split .lead{
+      font-family: var(--serif);
+      font-size: clamp(22px, 2vw, 26px);
+      font-weight: 300;
+      line-height: 1.5;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .law-split p + p{ margin-top: 18px; }
+    .law-split p{ font-size: 16px; line-height: 1.8; }
+
+    /* Downloads */
+    .downloads-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .download-card{
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,.08);
+      border-radius: var(--radius);
+      padding: 24px 22px 28px;
+      text-align: center;
+      transition: all .3s var(--ease);
+      position: relative;
+    }
+    .download-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -36px rgba(14,26,102,.25);
+    }
+    .download-card h3{
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .download-card .meta{
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .download-card p{
+      font-size: 13px;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    /* ── Poster preview — transform-scale approach ── */
+    /* Outer container: correct aspect ratio, clips overflow */
+    .poster-preview{
+      aspect-ratio: 8.5 / 11;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(29,42,138,.22);
+      border-radius: 4px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px -8px rgba(14,26,102,.22);
+    }
+    /* Inner: designed at 320px wide, scaled to fit by JS */
+    .poster-inner{
+      position: absolute;
+      top: 0; left: 0;
+      width: 320px;
+      transform-origin: top left;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .pi-header{
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 14px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border-bottom: 3px solid #c8102e;
+    }
+    .pi-state{
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .pi-dept{
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+    .pi-notice-band{
+      background: #c8102e;
+      color: #fff;
+      text-align: center;
+      padding: 14px 12px 12px;
+    }
+    .pi-notice-label{
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: .85;
+      margin-bottom: 5px;
+    }
+    .pi-notice-title{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+    .pi-notice-title-zh{
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .pi-notice-sub{
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      opacity: .8;
+      margin-top: 4px;
+    }
+    .pi-body{
+      flex: 1;
+      padding: 12px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #fff;
+    }
+    .pi-crime{
+      font-size: 11px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.5;
+      text-align: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+    .pi-if{
+      font-size: 10px;
+      color: #444;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .pi-hotline-box{
+      border: 2px solid #c8102e;
+      text-align: center;
+      padding: 10px 8px 8px;
+      background: #fff8f8;
+    }
+    .pi-hotline-in{
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 3px;
+    }
+    .pi-hotline-name{
+      font-size: 18px;
+      font-weight: 900;
+      color: #c8102e;
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+    .pi-hotline-num{
+      font-size: 24px;
+      font-weight: 900;
+      color: #111;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+    .pi-hotline-sub{
+      font-size: 8px;
+      color: #666;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .pi-or{
+      text-align: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .pi-national{
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+    }
+    .pi-national-label{
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+    }
+    .pi-national-num{
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: 0.03em;
+    }
+    .pi-text-option{
+      font-size: 9px;
+      color: #444;
+      text-align: center;
+      line-height: 1.6;
+      padding: 6px 8px;
+      background: #f5f5f5;
+    }
+    .pi-anon{
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: 0.04em;
+      border-top: 2px solid #111;
+      padding-top: 8px;
+      margin-top: auto;
+      line-height: 1.5;
+    }
+    .pi-footer{
+      background: #1a1a1a;
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      font-size: 8px;
+      padding: 5px;
+      letter-spacing: 0.1em;
+    }
+    /* Mandarin card */
+    .download-card.mandarin{ border-color: rgba(29,42,138,.12); }
+    .download-card.mandarin .pi-header{ background: #0E1A66; border-bottom-color: #1D2A8A; }
+    .download-card.mandarin .pi-notice-band{ background: #0E1A66; }
+    .download-card.mandarin .pi-hotline-box{ border-color: #1D2A8A; background: #EAF2F6; }
+    .download-card.mandarin .pi-hotline-name{ color: #1D2A8A; }
+    .download-card.mandarin .pi-footer{ background: #0E1A66; }
+
+    /* Where to post */
+    .post-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .post-item{
+      padding: 40px 30px;
+      border-right: 1px solid rgba(29,42,138,.1);
+      border-bottom: 1px solid rgba(29,42,138,.1);
+    }
+    .post-item:last-child{ border-right: none; }
+    .post-item .p-num{
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .post-item h4{
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .post-item p{ font-size: 14px; line-height: 1.7; }
+
+    /* Statute block */
+    .statute-block{
+      background: var(--ink);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin: 28px 0 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .statute-block::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(500px 300px at 80% 0%, rgba(143,196,222,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .statute-block .s-cite{
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sky);
+      font-family: var(--sans);
+      font-weight: 400;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .statute-block .s-text{
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(255,255,255,.88);
+      font-weight: 300;
+      position: relative;
+    }
+    .statute-block .s-text strong{
+      color: #fff;
+      font-weight: 500;
+    }
+    .statute-block .s-source{
+      margin-top: 18px;
+      font-size: 11px;
+      color: rgba(255,255,255,.45);
+      letter-spacing: 0.04em;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 14px;
+      position: relative;
+    }
+
+    /* Applies-to list */
+    .applies-list{
+      list-style: none;
+      margin-top: 20px;
+    }
+    .applies-list li{
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(29,42,138,.08);
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+    }
+    .applies-list li::before{
+      content: "—";
+      color: var(--navy);
+      font-family: var(--serif);
+      flex-shrink: 0;
+    }
+    .applies-list li:last-child{ border-bottom: none; }
+
+    /* FAQ */
+    .faq-list{ max-width: 860px; margin: 0 auto; }
+    .faq-item{ border-bottom: 1px solid rgba(29,42,138,.12); }
+    .faq-item summary{
+      cursor: pointer;
+      padding: 28px 60px 28px 0;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      position: relative;
+      list-style: none;
+      line-height: 1.3;
+    }
+    .faq-item summary::-webkit-details-marker{ display: none; }
+    .faq-item summary::after{
+      content: "+";
+      position: absolute;
+      right: 10px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 26px;
+      color: var(--navy);
+      font-weight: 300;
+      transition: transform .3s var(--ease);
+    }
+    .faq-item[open] summary::after{ transform: translateY(-50%) rotate(45deg); }
+    .faq-item p{
+      padding: 0 40px 32px 0;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1200px){
+      .downloads-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1000px){
+      .law-split{ grid-template-columns: 1fr; gap: 40px; }
+      .post-grid{ grid-template-columns: 1fr 1fr; }
+      .post-item:nth-child(2n){ border-right: none; }
+    }
+    @media (max-width: 600px){
+      .downloads-grid{ grid-template-columns: 1fr; }
+      .post-grid{ grid-template-columns: 1fr; }
+      .post-item{ border-right: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="chrome-top"></div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <p class="eyebrow">For New Mexico Businesses</p>
+    <h1>Mandatory <em>signage</em><br>requirements.</h1>
+    <p>New Mexico law requires all businesses subject to minimum wage to post information about the 505 GET FREE human trafficking hotline — where employees and the public can see it.</p>
+    <div class="hero-actions">
+      <a href="#downloads" class="btn btn-primary">Download Posters <span class="arrow">→</span></a>
+      <a href="#faq" class="btn btn-ghost">Compliance FAQ</a>
+    </div>
+  </section>
+
+  <!-- What the law requires -->
+  <section class="pad-lg bg-veil">
+    <div class="inner">
+      <div class="law-split">
+        <div class="reveal">
+          <p class="eyebrow">The Law</p>
+          <h2 style="font-family:var(--serif); font-size: clamp(32px, 4vw, 48px); font-weight:300; line-height:1.1; margin:22px 0 24px;">What is <em>required.</em></h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">New Mexico Statutes § 30-52-2.1 requires covered businesses and agencies to display an official human trafficking notice — in a conspicuous location visible to both employees and the public.</p>
+
+          <div class="statute-block">
+            <span class="s-cite">NMSA § 30-52-2.1 · Laws 2014, ch. 75 · Required posting language</span>
+            <p class="s-text">
+              <strong>NOTICE ON HUMAN TRAFFICKING:</strong> OBTAINING FORCED LABOR OR SERVICES IS A CRIME UNDER NEW MEXICO AND FEDERAL LAW. IF YOU OR SOMEONE YOU KNOW IS A VICTIM OF THIS CRIME, CONTACT THE FOLLOWING: IN NEW MEXICO, <strong>CALL OR TEXT 505-GET-FREE (505-438-3733)</strong>; OR CALL THE NATIONAL HUMAN TRAFFICKING RESOURCE CENTER HOTLINE TOLL-FREE AT 1-888-373-7888 FOR HELP. YOU MAY ALSO SEND THE TEXT "HELP" OR "INFO" TO BEFREE ("233733"). YOU MAY REMAIN ANONYMOUS, AND YOUR CALL OR TEXT IS CONFIDENTIAL.
+            </p>
+            <p class="s-source">Verbatim required language · NMSA § 30-52-2.1(A) · Effective July 1, 2014</p>
+          </div>
+
+          <p style="margin-top: 20px; font-size:15px;">This requirement applies to:</p>
+          <ul class="applies-list">
+            <li>Employers subject to the New Mexico Minimum Wage Act</li>
+            <li>Persons licensed under the Liquor Control Act (§§ 60-6A-2 through 60-6A-5)</li>
+            <li>Health facilities licensed under the Public Health Act</li>
+            <li>State or local government agencies managing transportation facilities, including highway rest areas</li>
+          </ul>
+          <p style="margin-top: 20px; font-size:14px; line-height:1.75;">The sign must be at least 8.5" × 11" and must include English, Spanish, and any other language spoken by 10% or more of workers or patrons. The official poster is provided free by the New Mexico Department of Workforce Solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Downloads -->
+  <section id="downloads" class="pad-lg bg-porcelain">
+    <div class="inner">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Download the Poster</p>
+        <h2>Official <em>posters,</em> free to use.</h2>
+        <p>Available in English, Spanish, and large-format sizes. Designed to be printed on any standard printer.</p>
+      </div>
+      <div class="downloads-grid">
+
+        <!-- ENGLISH -->
+        <div class="download-card reveal">
+          <div class="poster-preview">
+            <div class="poster-inner">
+              <div class="pi-header"><div class="pi-state">State of New Mexico</div><div class="pi-dept">Department of Workforce Solutions</div></div>
+              <div class="pi-notice-band">
+                <div class="pi-notice-label">Official Required Posting · NMSA § 30-52-2.1</div>
+                <div class="pi-notice-title">NOTICE ON<br>HUMAN TRAFFICKING</div>
+              </div>
+              <div class="pi-body">
+                <div class="pi-crime">OBTAINING FORCED LABOR OR SERVICES IS A CRIME UNDER NEW MEXICO AND FEDERAL LAW.</div>
+                <div class="pi-if">If you or someone you know is a victim of this crime, contact the following:</div>
+                <div class="pi-hotline-box">
+                  <div class="pi-hotline-in">In New Mexico — Call or Text</div>
+                  <div class="pi-hotline-name">505-GET-FREE</div>
+                  <div class="pi-hotline-num">(505) 438-3733</div>
+                  <div class="pi-hotline-sub">Call · Text · 24/7 · Anonymous · Confidential</div>
+                </div>
+                <div class="pi-or">— or —</div>
+                <div class="pi-national">
+                  <div class="pi-national-label">National Human Trafficking Hotline — Toll Free</div>
+                  <div class="pi-national-num">1-888-373-7888</div>
+                </div>
+                <div class="pi-text-option">You may also text <strong>"HELP"</strong> or <strong>"INFO"</strong> to <strong>BEFREE (233733)</strong></div>
+                <div class="pi-anon">YOU MAY REMAIN ANONYMOUS.<br>YOUR CALL OR TEXT IS CONFIDENTIAL.</div>
+              </div>
+              <div class="pi-footer">dws.state.nm.us · New Mexico Department of Workforce Solutions</div>
+            </div>
+          </div>
+          <h3>English</h3>
+          <span class="meta">Official DWS Poster · 8.5″ × 11″</span>
+          <p>The official NM Workforce Solutions poster for English-speaking workplaces.</p>
+          <a href="https://www.dws.state.nm.us/Portals/0/DM/Business/Human_Trafficking_Poster.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 12px 22px; font-size: 11px;">Download PDF <span class="arrow">→</span></a>
+        </div>
+
+        <!-- SPANISH -->
+        <div class="download-card reveal">
+          <div class="poster-preview">
+            <div class="poster-inner">
+              <div class="pi-header"><div class="pi-state">Estado de Nuevo México</div><div class="pi-dept">Departamento de Soluciones para la Fuerza Laboral</div></div>
+              <div class="pi-notice-band">
+                <div class="pi-notice-label">Aviso de Publicación Obligatoria · NMSA § 30-52-2.1</div>
+                <div class="pi-notice-title">AVISO SOBRE<br>TRATA DE PERSONAS</div>
+              </div>
+              <div class="pi-body">
+                <div class="pi-crime">OBTENER TRABAJO O SERVICIOS FORZADOS ES UN DELITO BAJO LAS LEYES DE NUEVO MÉXICO Y FEDERALES.</div>
+                <div class="pi-if">Si usted o alguien que conoce es víctima de este delito, comuníquese con:</div>
+                <div class="pi-hotline-box">
+                  <div class="pi-hotline-in">En Nuevo México — Llame o Envíe Texto</div>
+                  <div class="pi-hotline-name">505-GET-FREE</div>
+                  <div class="pi-hotline-num">(505) 438-3733</div>
+                  <div class="pi-hotline-sub">Llame · Texto · 24/7 · Anónimo · Confidencial</div>
+                </div>
+                <div class="pi-or">— o —</div>
+                <div class="pi-national">
+                  <div class="pi-national-label">Línea Nacional contra la Trata — Gratuita</div>
+                  <div class="pi-national-num">1-888-373-7888</div>
+                </div>
+                <div class="pi-text-option">También puede enviar <strong>"HELP"</strong> o <strong>"INFO"</strong> a <strong>BEFREE (233733)</strong></div>
+                <div class="pi-anon">PUEDE PERMANECER ANÓNIMO.<br>SU LLAMADA O TEXTO ES CONFIDENCIAL.</div>
+              </div>
+              <div class="pi-footer">dws.state.nm.us · Departamento de Soluciones para la Fuerza Laboral</div>
+            </div>
+          </div>
+          <h3>Español</h3>
+          <span class="meta">Official DWS Poster · 8.5″ × 11″</span>
+          <p>Versión oficial en español. Requerida donde el 10% o más habla español.</p>
+          <a href="https://www.dws.state.nm.us/Portals/0/DM/Business/Human_Trafficking_Poster_Spanish.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 12px 22px; font-size: 11px;">Descargar PDF <span class="arrow">→</span></a>
+        </div>
+
+        <!-- NAVAJO -->
+        <div class="download-card reveal">
+          <div class="poster-preview">
+            <div class="poster-inner">
+              <div class="pi-header"><div class="pi-state">Naabeehó Bináhásdzo · New Mexico</div><div class="pi-dept">Department of Workforce Solutions</div></div>
+              <div class="pi-notice-band">
+                <div class="pi-notice-label">Diné Bizaad · Official Required Posting</div>
+                <div class="pi-notice-title">NOTICE ON<br>HUMAN TRAFFICKING</div>
+                <div class="pi-notice-sub">Diné Bizaad · Navajo Language Version</div>
+              </div>
+              <div class="pi-body">
+                <div class="pi-crime">OBTAINING FORCED LABOR OR SERVICES IS A CRIME UNDER NEW MEXICO AND FEDERAL LAW.</div>
+                <div class="pi-if">If you or someone you know is a victim, contact the following:</div>
+                <div class="pi-hotline-box">
+                  <div class="pi-hotline-in">In New Mexico — Call or Text</div>
+                  <div class="pi-hotline-name">505-GET-FREE</div>
+                  <div class="pi-hotline-num">(505) 438-3733</div>
+                  <div class="pi-hotline-sub">Diné Bizaad · 24/7 · Anonymous · Confidential</div>
+                </div>
+                <div class="pi-or">— or —</div>
+                <div class="pi-national">
+                  <div class="pi-national-label">National Hotline — Toll Free</div>
+                  <div class="pi-national-num">1-888-373-7888</div>
+                </div>
+                <div class="pi-text-option">Text <strong>"HELP"</strong> or <strong>"INFO"</strong> to <strong>BEFREE (233733)</strong></div>
+                <div class="pi-anon">YOU MAY REMAIN ANONYMOUS.<br>YOUR CALL OR TEXT IS CONFIDENTIAL.</div>
+              </div>
+              <div class="pi-footer">dws.state.nm.us · New Mexico Department of Workforce Solutions</div>
+            </div>
+          </div>
+          <h3>Diné Bizaad</h3>
+          <span class="meta">Official DWS Poster · Navajo</span>
+          <p>Navajo-language version. Required where 10%+ of workers or patrons speak Diné Bizaad.</p>
+          <a href="https://www.dws.state.nm.us/Portals/0/DM/Business/Human_Trafficking_Poster_Navajo.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 12px 22px; font-size: 11px;">Download PDF <span class="arrow">→</span></a>
+        </div>
+
+        <!-- MANDARIN -->
+        <div class="download-card mandarin reveal">
+          <div class="poster-preview">
+            <div class="poster-inner">
+              <div class="pi-header"><div class="pi-state">新墨西哥州 · State of New Mexico</div><div class="pi-dept">505 GET FREE Human Trafficking Hotline</div></div>
+              <div class="pi-notice-band">
+                <div class="pi-notice-label">官方强制张贴通知 · Official Required Posting</div>
+                <div class="pi-notice-title-zh">人口贩卖通知</div>
+                <div class="pi-notice-sub">Notice on Human Trafficking · 普通话</div>
+              </div>
+              <div class="pi-body">
+                <div class="pi-crime">在新墨西哥州及联邦法律下，强迫他人劳动或提供服务属于犯罪行为。</div>
+                <div class="pi-if">如果您或您认识的人是此类犯罪的受害者，请联系以下机构：</div>
+                <div class="pi-hotline-box">
+                  <div class="pi-hotline-in">在新墨西哥州 · 拨打或发送短信</div>
+                  <div class="pi-hotline-name">505-GET-FREE</div>
+                  <div class="pi-hotline-num">(505) 438-3733</div>
+                  <div class="pi-hotline-sub">电话 · 短信 · 24/7 · 匿名 · 保密</div>
+                </div>
+                <div class="pi-or">— 或 —</div>
+                <div class="pi-national">
+                  <div class="pi-national-label">全国人口贩卖资源中心免费热线</div>
+                  <div class="pi-national-num">1-888-373-7888</div>
+                </div>
+                <div class="pi-text-option">发送短信 <strong>"HELP"（求助）</strong> 或 <strong>"INFO"</strong> 至 <strong>BEFREE (233733)</strong></div>
+                <div class="pi-anon">您的来电和短信可保持匿名，且完全保密。</div>
+              </div>
+              <div class="pi-footer">505 GET FREE · 505getfree.org · NMSA § 30-52-2.1</div>
+            </div>
+          </div>
+          <h3>普通话</h3>
+          <span class="meta">505 GET FREE · Mandarin Chinese</span>
+          <p>Mandarin translation by 505 GET FREE. Post where workers or patrons speak Mandarin.</p>
+          <a href="Human_Trafficking_Poster_Mandarin.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 12px 22px; font-size: 11px;">下载 Download PDF <span class="arrow">→</span></a>
+        </div>
+
+      </div>
+      <p style="text-align:center; margin-top: 24px; font-size:13px; color: var(--ink-muted);">
+        Posters are provided free of charge by the <a href="https://www.dws.state.nm.us/en-us/State-and-Federal-Posters" target="_blank" rel="noopener" style="color:var(--navy); border-bottom: 1px solid rgba(29,42,138,.3);">New Mexico Department of Workforce Solutions</a>. You should never have to pay for this poster.
+      </p>
+    </div>
+  </section>
+
+  <!-- Where to post -->
+  <section class="pad-lg bg-paper">
+    <div class="inner">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Where to Post</p>
+        <h2>Four places <em>it belongs.</em></h2>
+      </div>
+      <div class="post-grid reveal" style="border-top: 1px solid rgba(29,42,138,.1);">
+        <div class="post-item">
+          <span class="p-num">— i.</span>
+          <h4>Employee break rooms</h4>
+          <p>Where staff gather, rest, and talk openly. This is the single most important location.</p>
+        </div>
+        <div class="post-item">
+          <span class="p-num">— ii.</span>
+          <h4>Restrooms</h4>
+          <p>One of the few private places an employee or patron may have to read it alone.</p>
+        </div>
+        <div class="post-item">
+          <span class="p-num">— iii.</span>
+          <h4>Near time clocks</h4>
+          <p>Alongside other required labor-law postings, where all employees see it daily.</p>
+        </div>
+        <div class="post-item" style="border-bottom: none;">
+          <span class="p-num">— iv.</span>
+          <h4>Customer entrances</h4>
+          <p>Posted discreetly near lobbies or entryways where the public can also see it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="pad-lg bg-linen">
+    <div class="inner">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Compliance Questions</p>
+        <h2>What <em>business owners</em> ask.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Is there a fine for not posting?</summary>
+          <p>Penalties for non-compliance are enforced by the New Mexico Department of Workforce Solutions through the Labor Relations Division. Contact DWS directly at <a href="https://www.dws.state.nm.us" target="_blank" rel="noopener" style="color:var(--navy);">dws.state.nm.us</a> for current enforcement specifics.</p>
+        </details>
+        <details class="faq-item">
+          <summary>I run a small business — does this apply to me?</summary>
+          <p>If you employ workers subject to the New Mexico Minimum Wage Act, yes — regardless of business size. The law also applies to liquor licensees, health facilities, and government transportation agencies. When in doubt, posting is always the right choice. The poster is free, and compliance takes five minutes.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I print this from my own printer?</summary>
+          <p>Yes. The law requires the sign to be at least 8.5" × 11" — a standard letter-size printout from any printer is fully compliant. The DWS provides the official PDF specifically so employers can print it themselves at no cost.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which languages do I need to post?</summary>
+          <p>The statute (NMSA § 30-52-2.1) requires English and Spanish, plus any additional language spoken by 10% or more of your workers or patrons. For many New Mexico workplaces — particularly those near Navajo Nation or in communities with significant Diné populations — the Navajo-language version is required. All three official posters are available above.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where exactly do I need to post it?</summary>
+          <p>The law requires the sign to be displayed "in a conspicuous manner" in your facility — "clearly visible to the public and employees." Best practice: post it in employee break rooms, restrooms, near time clocks alongside other required labor-law postings, and near public entrances or lobbies.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <p class="eyebrow">Questions About Compliance?</p>
+    <h2>We're happy to <em>help you</em><br>stay compliant.</h2>
+    <p>Reach out to our team — we can answer questions about the law, walk through placement, or send a physical copy for your workplace.</p>
+    <div class="cta-buttons">
+      <a href="mailto:505getfree@gmail.com" class="btn btn-light">Contact Us <span class="arrow">→</span></a>
+      <a href="#downloads" class="btn btn-outline-light">Download Posters</a>
+    </div>
+  </section>
+
+  <div id="chrome-bottom"></div>
+
+  <script src="js/chrome.js"></script>
+  <script>
+    // Scale poster-inner divs to fill their container
+    function scalePosterPreviews() {
+      document.querySelectorAll('.poster-preview').forEach(function(preview) {
+        var inner = preview.querySelector('.poster-inner');
+        if (!inner) return;
+        var scale = preview.clientWidth / 320;
+        inner.style.transform = 'scale(' + scale + ')';
+        // Set inner height so it fills the container without overflow clipping text
+        inner.style.height = (preview.clientHeight / scale) + 'px';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', scalePosterPreviews);
+    window.addEventListener('resize', scalePosterPreviews);
+    // Also run after reveal animations finish
+    setTimeout(scalePosterPreviews, 600);
+  </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · 505 GET FREE</title>
+  <meta name="description" content="About 505 GET FREE — New Mexico's statewide human trafficking resource hotline, operated by The Life Link since 2012.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/spa.css">
+
+  <style>
+    /* ── About page-specific styles ── */
+    .intro-split{
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .intro-split .lead{
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.2vw, 28px);
+      line-height: 1.5;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+    .intro-split p + p{ margin-top: 18px; }
+    .intro-split .side-card{
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,.08);
+      border-radius: var(--radius);
+      padding: 36px 34px;
+      position: sticky; top: 120px;
+    }
+    .intro-split .side-card .eyebrow{ margin-bottom: 22px; }
+    .intro-split .side-card h4{
+      font-family: var(--sans);
+      font-size: 11px; letter-spacing: .22em;
+      text-transform: uppercase; font-weight: 500;
+      color: var(--navy); margin: 20px 0 6px;
+    }
+    .intro-split .side-card p{
+      font-size: 15px; line-height: 1.7;
+    }
+    .intro-split .side-card a{
+      color: var(--navy); border-bottom: 1px solid rgba(29,42,138,.35);
+    }
+
+    .stats-strip{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(29,42,138,.1);
+      border-bottom: 1px solid rgba(29,42,138,.1);
+    }
+    .stats-strip .stat{
+      padding: 56px 36px;
+      border-right: 1px solid rgba(29,42,138,.08);
+      text-align: center;
+    }
+    .stats-strip .stat:last-child{ border-right: none; }
+    .stats-strip .stat .n{
+      font-family: var(--serif);
+      font-size: clamp(44px, 5vw, 68px);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .stats-strip .stat .n em{ font-style: italic; color: var(--ink); }
+    .stats-strip .stat .l{
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Mission pillars */
+    .pillars{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .pillar{
+      background: var(--paper);
+      border-radius: var(--radius);
+      padding: 48px 40px 44px;
+      border: 1px solid rgba(29,42,138,.07);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+    }
+    .pillar:hover{ transform: translateY(-4px); box-shadow: 0 30px 60px -36px rgba(14,26,102,.25); }
+    .pillar .p-num{
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      color: var(--navy);
+      margin-bottom: 22px;
+      display: block;
+    }
+    .pillar h3{
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+    .pillar h3 em{ font-style: italic; color: var(--navy); font-weight: 300; }
+    .pillar p{ font-size: 15px; line-height: 1.75; }
+
+    /* Mission quote block */
+    .mission-quote-block{
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .mission-quote-block .mark{
+      font-family: var(--serif);
+      font-size: 120px;
+      line-height: 1;
+      color: var(--sky);
+      opacity: .6;
+      margin-bottom: -30px;
+    }
+    .mission-quote-block blockquote{
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 300;
+      line-height: 1.35;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .mission-quote-block blockquote em{ color: var(--navy); font-style: italic; }
+
+    /* Reality in NM */
+    .reality-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .reality-card{
+      background: var(--porcelain);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      position: relative;
+    }
+    .reality-card .r-marker{
+      font-family: var(--serif);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--navy);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .reality-card p{
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-text);
+    }
+    .reality-card strong{
+      display: block;
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Team */
+    .team-note{
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,.08);
+      border-radius: var(--radius);
+    }
+    .team-note p{ margin-bottom: 16px; font-size: 16px; }
+    .team-note p em{ font-family: var(--serif); font-style: italic; color: var(--navy); font-size: 17px; }
+    .team-note a{ color: var(--navy); border-bottom: 1px solid rgba(29,42,138,.35); }
+
+    /* Partners */
+    .partner-grid{
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .partner-tile{
+      aspect-ratio: 1.3/1;
+      background: var(--paper);
+      border: 1px dashed rgba(29,42,138,.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      text-align: center;
+      padding: 16px;
+      line-height: 1.5;
+      transition: all .3s var(--ease);
+    }
+    .partner-tile:hover{ border-color: var(--navy); color: var(--navy); background: #fff; }
+
+    @media (max-width: 1000px){
+      .intro-split{ grid-template-columns: 1fr; gap: 48px; }
+      .intro-split .side-card{ position: static; }
+      .stats-strip{ grid-template-columns: repeat(2, 1fr); }
+      .stats-strip .stat{ border-bottom: 1px solid rgba(29,42,138,.08); }
+      .stats-strip .stat:nth-child(2n){ border-right: none; }
+      .pillars{ grid-template-columns: 1fr; }
+      .reality-grid{ grid-template-columns: repeat(2, 1fr); }
+      .partner-grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px){
+      .stats-strip{ grid-template-columns: 1fr; }
+      .stats-strip .stat{ border-right: none; }
+      .reality-grid{ grid-template-columns: 1fr; }
+      .partner-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top status bar -->
+  <div class="topbar">
+    <span><span class="dot"></span> Hotline open 24 / 7 · Call or Text (505) 438-3733</span>
+    <span>Free · Confidential · Statewide</span>
+  </div>
+
+  <!-- Primary nav -->
+  <nav class="primary">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo-main.png" alt="505 Get Free">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <span>About</span>
+        <ul class="nav-dropdown">
+          <li><a href="about.html#initiative">Our Initiative</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+          <li><a href="about.html#staff">Our Staff</a></li>
+          <li><a href="about.html#partnerships">Partnerships</a></li>
+          <li><a href="signage.html">Mandatory Signage</a></li>
+          <li><a href="news.html">Media</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>Resources</span>
+        <ul class="nav-dropdown">
+          <li><a href="resources.html?city=albuquerque">Albuquerque</a></li>
+          <li><a href="resources.html?city=santa-fe">Santa Fe</a></li>
+          <li><a href="resources.html?city=las-cruces">Las Cruces</a></li>
+          <li><a href="resources.html?city=taos">Taos</a></li>
+          <li><a href="resources.html?city=farmington">Farmington</a></li>
+          <li><a href="resources.html?city=hobbs">Hobbs</a></li>
+          <li><a href="resources.html">View all →</a></li>
+        </ul>
+      </li>
+      <li><a href="news.html">News &amp; Media</a></li>
+      <li><a href="reporting.html">Reporting</a></li>
+      <li>
+        <span>How to Help</span>
+        <ul class="nav-dropdown">
+          <li><a href="get-listed.html">Get Listed in Our Directory</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </li>
+      <li><a href="get-help.html" class="nav-cta">Get Help</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="nav-exit-btn" onclick="exitSite()" title="Quickly leave this site">EXIT<br>SITE</button>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <span>About</span>
+    <div class="mobile-sub">
+      <a href="about.html#initiative">Our Initiative</a>
+      <a href="about.html#mission">Our Mission</a>
+      <a href="about.html#staff">Our Staff</a>
+      <a href="about.html#partnerships">Partnerships</a>
+      <a href="signage.html">Mandatory Signage</a>
+    </div>
+    <span>Resources</span>
+    <div class="mobile-sub">
+      <a href="resources.html?city=albuquerque">Albuquerque</a>
+      <a href="resources.html?city=santa-fe">Santa Fe</a>
+      <a href="resources.html?city=las-cruces">Las Cruces</a>
+      <a href="resources.html?city=taos">Taos</a>
+      <a href="resources.html">View All →</a>
+    </div>
+    <a href="news.html">News &amp; Media</a>
+    <a href="reporting.html">Reporting</a>
+    <a href="get-listed.html">Get Listed in Directory</a>
+    <div class="mobile-cta"><a href="get-help.html">Get Help Now</a></div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <p class="eyebrow">About 505 GET FREE</p>
+    <h1>Built by <em>New Mexico,</em><br>for New Mexico.</h1>
+    <p>A quiet, statewide thread of care — run by The Life Link, a Santa Fe–based nonprofit, since 2012.</p>
+  </section>
+
+  <!-- INITIATIVE -->
+  <section id="initiative" class="pad-lg bg-veil">
+    <div class="inner">
+      <div class="intro-split">
+        <div class="reveal">
+          <p class="eyebrow">Our Initiative</p>
+          <p class="lead" style="margin-top:22px;">505 GET FREE is New Mexico's statewide hotline for human trafficking resources — a bridge between people experiencing trafficking (or at risk) and the local organizations equipped to help.</p>
+          <p>Established in 2012, the number is designed to be easy to remember, easy to share, and easy to trust: <strong>505-GET-FREE · (505) 438-3733</strong>. One call. A real advocate. A referral to care that fits.</p>
+          <p>We don't replace the shelters, the clinics, the legal aid offices, or the tribal advocates already doing this work across the state — we help people find them. That's it. That's the whole promise.</p>
+        </div>
+        <aside class="side-card reveal">
+          <p class="eyebrow">Operated by</p>
+          <h4 style="font-family:var(--serif); font-size:26px; font-weight:400; letter-spacing:-0.005em; text-transform:none; color:var(--ink); margin:0 0 10px; line-height:1.2;">The Life Link</h4>
+          <p>A nonprofit based in Santa Fe, New Mexico, providing behavioral health, housing, and anti-trafficking services since 1987.</p>
+          <h4>Contact</h4>
+          <p><a href="mailto:505getfree@gmail.com">505getfree@gmail.com</a></p>
+          <h4>Hotline</h4>
+          <p><a href="tel:+15054383733">(505) 438-3733</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="bg-paper">
+    <div class="inner">
+      <div class="stats-strip">
+        <div class="stat"><span class="n">2012</span><span class="l">Since</span></div>
+        <div class="stat"><span class="n"><em>24/7</em></span><span class="l">Available</span></div>
+        <div class="stat"><span class="n">All <em>33</em></span><span class="l">NM Counties Covered</span></div>
+        <div class="stat"><span class="n">100<em>%</em></span><span class="l">Free &amp; Confidential</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION QUOTE -->
+  <section id="mission" class="pad-lg bg-porcelain">
+    <div class="inner">
+      <div class="mission-quote-block reveal">
+        <div class="mark">“</div>
+        <blockquote>To ensure that every person in New Mexico affected by human trafficking can access <em>immediate resources,</em> compassionate support, and a pathway to <em>safety</em> — no matter where they are.</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pad-lg bg-veil">
+    <div class="inner">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Three Commitments</p>
+        <h2>How we <em>show up.</em></h2>
+        <p>The shape of our work, reduced to its essentials. Everything we do fits inside these three verbs.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <span class="p-num">— i.</span>
+          <h3><em>Connect</em></h3>
+          <p>We link survivors, families, and concerned neighbors to the right local resource — the shelter that has beds tonight, the attorney who handles T-visas, the advocate who speaks their language.</p>
+        </div>
+        <div class="pillar reveal">
+          <span class="p-num">— ii.</span>
+          <h3><em>Protect</em></h3>
+          <p>Trauma-informed, survivor-led, confidential by default. No reports made without consent except to prevent imminent harm. The caller's safety is the first and last consideration.</p>
+        </div>
+        <div class="pillar reveal">
+          <span class="p-num">— iii.</span>
+          <h3><em>Educate</em></h3>
+          <p>We train healthcare workers, teachers, hospitality staff, law enforcement, and tribal liaisons to recognize trafficking and know what to do when they see it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REALITY IN NM -->
+  <section class="pad-lg bg-paper">
+    <div class="inner">
+      <div class="section-head reveal">
+        <p class="eyebrow">The Reality in New Mexico</p>
+        <h2>Why this hotline <em>exists.</em></h2>
+        <p>New Mexico consistently ranks among the highest states for human trafficking per capita. Border geography, rural isolation, and poverty create conditions traffickers exploit. The 505 GET FREE hotline exists to interrupt that cycle.</p>
+      </div>
+      <div class="reality-grid">
+        <div class="reality-card reveal">
+          <span class="r-marker">— Fact 01</span>
+          <p><strong>Top 10</strong>states for trafficking reports per capita.</p>
+        </div>
+        <div class="reality-card reveal">
+          <span class="r-marker">— Fact 02</span>
+          <p><strong>Ag · Hospitality · Domestic</strong>are the most common trafficking sectors identified in the state.</p>
+        </div>
+        <div class="reality-card reveal">
+          <span class="r-marker">— Fact 03</span>
+          <p><strong>Indigenous</strong>communities face disproportionate risk, especially along MMIW corridors.</p>
+        </div>
+        <div class="reality-card reveal">
+          <span class="r-marker">— Fact 04</span>
+          <p><strong>Most victims</strong>are U.S. citizens or legal residents — not foreign nationals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR TEAM -->
+  <section id="staff" class="pad-lg bg-veil">
+    <div class="inner">
+      <div class="section-head center reveal">
+        <p class="eyebrow">The Team</p>
+        <h2>Trained advocates <em>on the other end of the line.</em></h2>
+        <p>Every call to 505 GET FREE is answered by a human — a trained advocate coordinated through The Life Link's anti-trafficking program team, with specialized training in trauma-informed care, crisis response, and survivor-centered service.</p>
+      </div>
+      <div class="team-note reveal">
+        <p><em>Staff profiles are coming soon.</em></p>
+        <p>For program inquiries, media requests, or partnership questions, please reach out directly.</p>
+        <p style="margin-top: 22px;"><a href="mailto:505getfree@gmail.com">505getfree@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section id="partnerships" class="pad-lg bg-porcelain">
+    <div class="inner">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our Partners</p>
+        <h2>Woven into a <em>statewide network.</em></h2>
+        <p>505 GET FREE works alongside shelter providers, legal advocates, law enforcement agencies, healthcare providers, tribal programs, and community organizations across New Mexico. When someone calls, there is always somewhere to turn.</p>
+      </div>
+      <div class="partner-grid">
+        <div class="partner-tile">Shelter Partner</div>
+        <div class="partner-tile">Legal Advocate</div>
+        <div class="partner-tile">Healthcare Partner</div>
+        <div class="partner-tile">Tribal Program</div>
+        <div class="partner-tile">Law Enforcement</div>
+        <div class="partner-tile">Community Org</div>
+        <div class="partner-tile">Faith Network</div>
+        <div class="partner-tile">Youth Services</div>
+        <div class="partner-tile">Immigration Aid</div>
+        <div class="partner-tile">Academic Ally</div>
+        <div class="partner-tile">Funding Partner</div>
+        <div class="partner-tile">+ Your Org</div>
+      </div>
+      <div style="text-align:center; margin-top: 48px;">
+        <p style="margin-bottom: 20px;">Want to become a partner? Get listed in our directory.</p>
+        <a href="get-listed.html" class="btn btn-primary">Get Listed <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <p class="eyebrow">Ready to Help or Get Help?</p>
+    <h2>One number. <em>Any hour.</em><br>Anywhere in the state.</h2>
+    <p>Call or text (505) 438-3733 — or explore the directory and find a provider near you.</p>
+    <div class="cta-buttons">
+      <a href="get-help.html" class="btn btn-light">Get Help Now <span class="arrow">→</span></a>
+      <a href="get-listed.html" class="btn btn-outline-light">Get Listed</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <img class="footer-logo" src="images/logo-main.png" alt="505 Get Free">
+        <p class="footer-tagline">New Mexico's Human Trafficking Resource Hotline — quietly connecting survivors and communities with help since 2012.</p>
+        <a href="tel:+15054383733" class="footer-hotline">(505) 438-3733</a>
+        <span class="footer-hotline-label">Call or Text · 24 / 7 · Confidential</span>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html#initiative">Our Initiative</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+          <li><a href="about.html#staff">Our Staff</a></li>
+          <li><a href="about.html#partnerships">Partnerships</a></li>
+          <li><a href="news.html">News &amp; Media</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="resources.html?city=albuquerque">Albuquerque</a></li>
+          <li><a href="resources.html?city=santa-fe">Santa Fe</a></li>
+          <li><a href="resources.html?city=las-cruces">Las Cruces</a></li>
+          <li><a href="resources.html?city=taos">Taos</a></li>
+          <li><a href="resources.html">All locations →</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Take Action</h4>
+        <ul>
+          <li><a href="reporting.html">Submit a Report</a></li>
+          <li><a href="get-listed.html">Get Listed in Directory</a></li>
+          <li><a href="signage.html">Download Signage</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="mailto:505getfree@gmail.com">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 505 GET FREE · <a href="mailto:505getfree@gmail.com">505getfree@gmail.com</a></p>
+      <p style="opacity:.55;">If you are in danger, call 911.</p>
+      <button class="footer-exit-btn" onclick="exitSite()">Exit this site</button>
+    </div>
+  </footer>
+
+  <script>
+    function exitSite(){
+      try { window.location.replace('https://weather.com'); }
+      catch(e){ window.location.href = 'https://weather.com'; }
+    }
+    const ham = document.querySelector('.hamburger');
+    const mnav = document.querySelector('.mobile-nav');
+    if (ham && mnav){
+      ham.addEventListener('click', () => {
+        ham.classList.toggle('open');
+        mnav.classList.toggle('open');
+      });
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In the Press · 505 GET FREE</title>
+  <meta name="description" content="News coverage, investigations, and official documentation of human trafficking in New Mexico — and the work of 505 GET FREE.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/spa.css">
+
+  <style>
+
+    /* ── PAGE HERO ── */
+    .page-hero{
+      background:
+        radial-gradient(900px 600px at 5% 0%, rgba(255,255,255,.9), transparent 55%),
+        radial-gradient(700px 500px at 95% 100%, var(--porcelain), transparent 60%),
+        var(--veil);
+      padding: 100px 48px 80px;
+      text-align: center;
+      border-bottom: 1px solid rgba(29,42,138,.08);
+    }
+    .page-hero h1{
+      font-size: clamp(46px, 5.5vw, 76px);
+      line-height: 1.02;
+      font-weight: 300;
+      letter-spacing: -0.018em;
+      margin: 20px auto 22px;
+      max-width: 780px;
+    }
+    .page-hero h1 em{ font-style: italic; color: var(--navy); }
+    .page-hero > p{
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 0 auto;
+      color: var(--ink-muted);
+    }
+
+    /* ── FILTER NAV ── */
+    .filter-nav{
+      background: var(--paper);
+      border-bottom: 1px solid rgba(29,42,138,.08);
+      position: sticky;
+      top: 92px;
+      z-index: 100;
+    }
+    .filter-nav-inner{
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-nav-inner::-webkit-scrollbar{ display:none; }
+    .filter-btn{
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding: 18px 20px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all .25s var(--ease);
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .filter-btn:hover{ color: var(--navy); }
+    .filter-btn.active{ color: var(--navy); border-bottom-color: var(--navy); }
+
+    /* ── SECTION WRAPPER ── */
+    .media-section{
+      padding: 80px 0 56px;
+      border-bottom: 1px solid rgba(29,42,138,.08);
+    }
+    .media-section:last-of-type{ border-bottom: none; }
+    .media-section.bg-paper{ background: var(--paper); }
+    .media-section.bg-veil{ background: var(--veil); }
+    .media-section.bg-porcelain{ background: var(--porcelain); }
+
+    .section-intro{
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 64px;
+      align-items: flex-start;
+      margin-bottom: 52px;
+    }
+    .section-intro h2{
+      font-size: clamp(34px, 3.6vw, 52px);
+      line-height: 1.05;
+      font-weight: 300;
+      letter-spacing: -0.012em;
+      margin-top: 18px;
+    }
+    .section-intro h2 em{ font-style: italic; color: var(--navy); }
+    .section-intro .side-note{
+      padding-top: 14px;
+    }
+    .section-intro .side-note p{
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ── MEDIA ROWS ── */
+    .media-list{ }
+    .media-row{
+      display: grid;
+      grid-template-columns: 90px 1fr auto auto;
+      align-items: baseline;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(29,42,138,.06);
+      text-decoration: none;
+      transition: background .2s var(--ease), padding-left .2s var(--ease);
+      border-radius: 4px;
+      margin: 0 -10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .media-row:last-child{ border-bottom: none; }
+    .media-row:hover{
+      background: var(--porcelain);
+      padding-left: 18px;
+    }
+    .outlet-badge{
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: rgba(29,42,138,.07);
+      border: 1px solid rgba(29,42,138,.12);
+      border-radius: 100px;
+      padding: 5px 10px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .media-title{
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-text);
+      line-height: 1.5;
+    }
+    .media-year{
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+    .media-arrow{
+      font-size: 14px;
+      color: var(--navy);
+      opacity: .5;
+      transition: opacity .2s, transform .2s var(--ease);
+    }
+    .media-row:hover .media-arrow{ opacity: 1; transform: translateX(3px); }
+
+    /* PDF/video badges */
+    .outlet-badge.pdf{ background: rgba(178,72,64,.08); border-color: rgba(178,72,64,.2); color: var(--red); }
+    .outlet-badge.video{ background: rgba(255,0,0,.07); border-color: rgba(255,0,0,.15); color: #c00; }
+
+    /* ── SUB-SECTION HEADERS ── */
+    .sub-section{
+      margin-top: 44px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(29,42,138,.1);
+    }
+    .sub-section:first-child{ margin-top: 0; border-top: none; }
+    .sub-label{
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sub-label::after{
+      content:"";
+      flex: 1;
+      height: 1px;
+      background: rgba(29,42,138,.1);
+    }
+
+    /* ── SHOW MORE ── */
+    .show-more-wrap{
+      text-align: center;
+      padding: 28px 0 8px;
+    }
+    .show-more-btn{
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: none;
+      border: 1px solid rgba(29,42,138,.2);
+      border-radius: 100px;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: all .25s var(--ease);
+    }
+    .show-more-btn:hover{ background: var(--navy); color: #fff; border-color: var(--navy); }
+    .hidden-rows{ display: none; }
+    .hidden-rows.open{ display: contents; }
+
+    /* ── FEATURED CARDS (local section top) ── */
+    .feat-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .feat-card{
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,.08);
+      border-radius: var(--radius);
+      padding: 28px 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all .3s var(--ease);
+      text-decoration: none;
+    }
+    .feat-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 28px 56px -32px rgba(14,26,102,.28);
+      border-color: rgba(29,42,138,.18);
+    }
+    .feat-card .outlet-badge{ display: inline-block; width: auto; }
+    .feat-card .fc-title{
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--ink);
+      flex: 1;
+    }
+    .feat-card .fc-meta{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--ink-muted);
+      border-top: 1px solid rgba(29,42,138,.08);
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+    .feat-card .fc-meta .read{
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    /* ── VIDEO GRID ── */
+    .video-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .video-card{
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      transition: all .3s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+    .video-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 28px 56px -32px rgba(14,26,102,.28);
+      border-color: rgba(29,42,138,.18);
+    }
+    .video-thumb{
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--ink) 0%, var(--navy) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-thumb::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(400px 300px at 30% 30%, rgba(143,196,222,.25), transparent 60%);
+    }
+    .play-icon{
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.6);
+      display: flex; align-items:center; justify-content:center;
+      color: #fff;
+      font-size: 18px;
+      padding-left: 4px;
+      position: relative;
+      z-index: 1;
+      transition: all .3s var(--ease);
+    }
+    .video-card:hover .play-icon{ background: rgba(255,255,255,.15); border-color:#fff; }
+    .video-body{
+      padding: 20px 22px 22px;
+    }
+    .video-body .outlet-badge{ margin-bottom: 10px; }
+    .video-body .fc-title{
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    /* ── RULE ── */
+    .rule{
+      display:block;
+      width: 1px; height: 48px;
+      background: linear-gradient(180deg, transparent, var(--navy) 40%, transparent);
+      margin: 0 auto;
+      opacity: .3;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px){
+      .section-intro{ grid-template-columns: 1fr; gap: 20px; }
+      .feat-grid{ grid-template-columns: 1fr 1fr; }
+      .video-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px){
+      .page-hero{ padding: 80px 22px 64px; }
+      .filter-nav-inner{ padding: 0 22px; }
+      .media-section{ padding: 56px 0 40px; }
+      .media-row{ grid-template-columns: 76px 1fr auto; }
+      .media-arrow{ display: none; }
+      .feat-grid{ grid-template-columns: 1fr; }
+      .video-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="chrome-top"></div>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+    <p class="eyebrow center">News &amp; Media</p>
+    <h1>The work,<br><em>in the press.</em></h1>
+    <p>Investigative reporting, local news, official documentation, and video covering human trafficking in New Mexico and the communities 505 GET FREE serves.</p>
+  </section>
+
+  <!-- ── FILTER NAV ── -->
+  <nav class="filter-nav" aria-label="Jump to section">
+    <div class="filter-nav-inner">
+      <button class="filter-btn active" data-target="local">Local &amp; Regional News</button>
+      <button class="filter-btn" data-target="navajo">The Navajo Investigation</button>
+      <button class="filter-btn" data-target="record">Official Record</button>
+      <button class="filter-btn" data-target="video">Video</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 1 — LOCAL & REGIONAL NEWS
+  ══════════════════════════════════════════════ -->
+  <section id="local" class="media-section bg-veil">
+    <div class="inner">
+      <div class="section-intro">
+        <div>
+          <p class="eyebrow">Local &amp; Regional</p>
+          <h2>505 GET FREE in<br><em>New Mexico news.</em></h2>
+        </div>
+        <div class="side-note">
+          <p>Coverage from New Mexico broadcast and print outlets reporting directly on the hotline, its work, and the trafficking issues it addresses across the state.</p>
+        </div>
+      </div>
+
+      <!-- Featured cards: 3 most significant -->
+      <div class="feat-grid">
+        <a href="https://www.krqe.com/news/albuquerque-city-hall-now-home-to-hotline-for-human-trafficking-victims/" target="_blank" rel="noopener" class="feat-card">
+          <span class="outlet-badge">KRQE</span>
+          <p class="fc-title">Albuquerque City Hall Now Home to Hotline for Human Trafficking Victims</p>
+          <div class="fc-meta"><span>KRQE News 13</span><span class="read">Read →</span></div>
+        </a>
+        <a href="https://www.koat.com/article/group-helps-sex-trafficking-victims-around-state-fair-1/5268326" target="_blank" rel="noopener" class="feat-card">
+          <span class="outlet-badge">KOAT</span>
+          <p class="fc-title">Group Helps Sex Trafficking Victims Around the State Fair</p>
+          <div class="fc-meta"><span>KOAT Action 7</span><span class="read">Read →</span></div>
+        </a>
+        <a href="https://www.santafenewmexican.com/news/local_news/city-campaign-aimed-at-human-trafficking/article_e28b14a5-4cae-5c7b-97a5-0afe70552090.html" target="_blank" rel="noopener" class="feat-card">
+          <span class="outlet-badge">Santa Fe NM</span>
+          <p class="fc-title">City Campaign Aimed at Human Trafficking</p>
+          <div class="fc-meta"><span>Santa Fe New Mexican</span><span class="read">Read →</span></div>
+        </a>
+      </div>
+
+      <!-- Additional local rows -->
+      <div class="media-list" style="margin-top: 8px;">
+        <a href="https://www.koat.com/article/group-helps-sex-trafficking-victims-around-state-fair/5084933" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">KOAT</span>
+          <span class="media-title">Group Helps Sex Trafficking Victims Around the State Fair</span>
+          <span class="media-year"></span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://www.krqe.com/news/experts-warn-predators-use-online-ads-to-lure-youth-into-human-trafficking/" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">KRQE</span>
+          <span class="media-title">Experts Warn Predators Use Online Ads to Lure Youth into Human Trafficking</span>
+          <span class="media-year"></span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://www.ksfr.org/news/2021-09-27/missing-white-girl-syndrome-the-mmiw-epidemic-continues-to-be-overlooked-by-the-law" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">KSFR</span>
+          <span class="media-title">'Missing White Girl Syndrome': The MMIW Epidemic Continues to Be Overlooked by the Law</span>
+          <span class="media-year">2021</span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://www.santafenewmexican.com/news/local_news/native-families-hope-session-brings-justice-for-missing-and-murdered-kin/article_bcbd01a0-85d4-11ec-a037-afeb27b096b7.html" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">Santa Fe NM</span>
+          <span class="media-title">Native Families Hope Legislative Session Brings Justice for Missing and Murdered Kin</span>
+          <span class="media-year">2022</span>
+          <span class="media-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 2 — THE NAVAJO INVESTIGATION
+  ══════════════════════════════════════════════ -->
+  <section id="navajo" class="media-section bg-paper">
+    <div class="inner">
+      <div class="section-intro">
+        <div>
+          <p class="eyebrow">Landmark Reporting</p>
+          <h2>The Navajo<br><em>investigation.</em></h2>
+        </div>
+        <div class="side-note">
+          <p>Beginning in 2020, journalists and investigators documented a sprawling labor trafficking operation embedded in illegal cannabis farms on Navajo Nation land in northwest New Mexico. Chinese workers were recruited under false pretenses, held in remote locations, and forced to work. 505 GET FREE was involved in the response. The story drew coverage from outlets across the United States and internationally.</p>
+        </div>
+      </div>
+
+      <!-- National & International Press -->
+      <div class="sub-section">
+        <p class="sub-label">National &amp; International Press</p>
+        <div class="media-list" id="national-list">
+          <a href="https://www.npr.org/2024/06/24/1238497863/chinese-marijuana-farms-new-mexico" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">NPR</span>
+            <span class="media-title">How Chinese Marijuana Farms Cropped Up in New Mexico</span>
+            <span class="media-year">2024</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.nbcnews.com/news/asian-america/chinese-immigrant-workers-sue-forced-labor-illegal-marijuana-operation-rcna118111" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">NBC News</span>
+            <span class="media-title">Chinese Immigrant Workers Sue Over Forced Labor in Illegal Marijuana Operation</span>
+            <span class="media-year">2023</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.wsj.com/us-news/law/how-chinese-marijuana-operations-cropped-up-in-small-town-america-45b7b598" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">WSJ</span>
+            <span class="media-title">How Chinese Marijuana Operations Cropped Up in Small-Town America</span>
+            <span class="media-year">2024</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.rollingstone.com/culture/culture-features/cannabis-navajo-nation-dineh-benally-hemp-1069298/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Rolling Stone</span>
+            <span class="media-title">Cannabis on Navajo Nation: The Story of Dineh Benally and the Hemp Controversy</span>
+            <span class="media-year">2020</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.bbc.com/news/world-us-canada-56835897" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">BBC</span>
+            <span class="media-title">The Chinese Workers and the Cannabis Farm on Navajo Land</span>
+            <span class="media-year">2021</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.washingtonpost.com/nation/2022/11/22/oklahoma-hostages-killed-marijuana-farm/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Wash. Post</span>
+            <span class="media-title">Oklahoma: Hostages Killed on Marijuana Farm</span>
+            <span class="media-year">2022</span>
+            <span class="media-arrow">→</span>
+          </a>
+
+          <!-- Hidden rows (show more) -->
+          <div class="hidden-rows" id="national-extra">
+            <a href="https://laist.com/news/chinese-immigrants-navajo-nation-cannabis-farm" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">LAIST</span>
+              <span class="media-title">Chinese Immigrants, Navajo Nation, and the Cannabis Farm</span>
+              <span class="media-year"></span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.voanews.com/a/usa_chinese-workers-turn-us-marijuana-industry-service-jobs-dry/6201064.html" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">VOA News</span>
+              <span class="media-title">Chinese Workers Turn to U.S. Marijuana Industry Service Jobs</span>
+              <span class="media-year">2021</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.usatoday.com/story/news/2020/12/26/shiprock-cannabis-farms-moved-oklahamas-farm-country/4021852001/" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">USA Today</span>
+              <span class="media-title">Shiprock Cannabis Farms Moved Into Oklahoma's Farm Country</span>
+              <span class="media-year">2020</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.the-independent.com/news/navajo-nation-ap-navajo-albuquerque-chinese-b2689588.html" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">The Independent</span>
+              <span class="media-title">Navajo Nation: The Chinese Workers and the Illegal Cannabis Operation</span>
+              <span class="media-year"></span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.bostonglobe.com/2020/06/12/marijuana/navajo-nation-sues-over-hemp-growing-operation/" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">Boston Globe</span>
+              <span class="media-title">Navajo Nation Sues Over Hemp Growing Operation</span>
+              <span class="media-year">2020</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.washingtontimes.com/news/2020/jun/12/navajo-nation-sues-over-hemp-growing-operation/" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">Wash. Times</span>
+              <span class="media-title">Navajo Nation Sues Over Hemp Growing Operation</span>
+              <span class="media-year">2020</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.latimes.com/california/story/2023-07-27/monterey-park-chinese-border-crossers-seek-new-life" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">LA Times</span>
+              <span class="media-title">Monterey Park: Chinese Border Crossers Seek a New Life</span>
+              <span class="media-year">2023</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.thenation.com/article/activism/aesthetic-asian-activism-police/" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">The Nation</span>
+              <span class="media-title">The Aesthetic of Asian Activism and Police</span>
+              <span class="media-year"></span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://melmagazine.com/en-us/story/chinese-pot-farm-panic" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">MEL Magazine</span>
+              <span class="media-title">Chinese Pot Farm Panic</span>
+              <span class="media-year"></span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.nbcnews.com/news/asian-america/shootings-2-asian-owned-businesses-albuquerque-leave-community-terrifi-rcna17450" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">NBC News</span>
+              <span class="media-title">Shootings at 2 Asian-Owned Businesses in Albuquerque Leave Community Terrified</span>
+              <span class="media-year">2022</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.bbc.com/zhongwen/trad/world-56897524" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">BBC 中文</span>
+              <span class="media-title">美国印第安保留地大麻农场非法华工劳工案 (Chinese-language coverage)</span>
+              <span class="media-year">2021</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://taiwannews.com.tw/news/5009779" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">Taiwan News</span>
+              <span class="media-title">Chinese Workers Recruited to Navajo Nation Cannabis Operation</span>
+              <span class="media-year">2021</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.rollingstone.com/culture/culture-pictures/uprooted-new-mexico-illegal-cannabis-farm-navajo-land-1089533/dju_20201110_shiprock_276/" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">Rolling Stone</span>
+              <span class="media-title">Uprooted: Inside New Mexico's Illegal Cannabis Farms on Navajo Land (Photo Essay)</span>
+              <span class="media-year">2020</span>
+              <span class="media-arrow">→</span>
+            </a>
+            <a href="https://www.business-humanrights.org/en/latest-news/usa-three-individuals-indicted-for-illicit-marijuana-operation-on-navajo-land-with-water-pollution-charges-chinese-investment-allegedly-funded-the-operation/" target="_blank" rel="noopener" class="media-row">
+              <span class="outlet-badge">BHRRC</span>
+              <span class="media-title">USA: Three Individuals Indicted for Illicit Marijuana Operation on Navajo Land</span>
+              <span class="media-year"></span>
+              <span class="media-arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="show-more-wrap">
+          <button class="show-more-btn" data-target="national-extra" data-count="14">Show all 14 national articles</button>
+        </div>
+      </div>
+
+      <!-- New Mexico & Regional Press -->
+      <div class="sub-section">
+        <p class="sub-label">New Mexico &amp; Regional Press</p>
+        <div class="media-list">
+          <a href="https://nmpoliticalreport.com/2021/03/27/criminal-cannabis-operations-that-took-root-in-navajo-nation-could-pop-up-in-other-indigenous-communities/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">NM Political</span>
+            <span class="media-title">Criminal Cannabis Operations That Took Root in Navajo Nation Could Spread to Other Indigenous Communities</span>
+            <span class="media-year">2021</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://navajotimes.com/reznews/chaos-and-cannabis/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Navajo Times</span>
+            <span class="media-title">Chaos and Cannabis</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://ictnews.org/news/navajo-police-shutting-down-hemp-farms/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">ICT News</span>
+            <span class="media-title">Navajo Police Shutting Down Hemp Farms</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://cronkitenews.azpbs.org/2020/11/10/navajo-hemp-investigation-expands-to-federal-marijuana-labor-probe/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Cronkite</span>
+            <span class="media-title">Navajo Hemp Investigation Expands to Federal Marijuana and Labor Probe</span>
+            <span class="media-year">2020</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.taosnews.com/news/crime/navajo-pot-san-juan-marijuana/article_24526999-65cc-588b-a290-a46372e4443d.html" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Taos News</span>
+            <span class="media-title">Navajo Pot: The San Juan River Marijuana Investigation</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://abq.news/2024/01/native-weed-entrepreneur-in-hot-water/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">ABQ News</span>
+            <span class="media-title">Native Weed Entrepreneur in Hot Water</span>
+            <span class="media-year">2024</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.usnews.com/news/best-states/new-mexico/articles/2025-09-24/navajo-man-pleads-guilty-for-illegal-marijuana-grow-operations" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">U.S. News</span>
+            <span class="media-title">Navajo Man Pleads Guilty for Illegal Marijuana Grow Operations</span>
+            <span class="media-year">2025</span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://ladailypost.com/fbi-shiprock-man-pleads-guilty-to-leading-massive-illegal-marijuana-operation-and-polluting-san-juan-river/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">LA Daily Post</span>
+            <span class="media-title">FBI: Shiprock Man Pleads Guilty to Leading Massive Illegal Marijuana Operation and Polluting San Juan River</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://news.crbmonitor.com/2024/01/nm-fines-two-licensed-cultivators-1m-each-revokes-licenses/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">CRB Monitor</span>
+            <span class="media-title">NM Fines Two Licensed Cultivators $1M Each, Revokes Licenses</span>
+            <span class="media-year">2024</span>
+            <span class="media-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Investigations & Analysis -->
+      <div class="sub-section">
+        <p class="sub-label">Investigations &amp; Analysis</p>
+        <div class="media-list">
+          <a href="https://searchlightnm.org/fields-of-green/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Searchlight NM</span>
+            <span class="media-title">Fields of Green</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://searchlightnm.org/chaos-and-cannabis/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Searchlight NM</span>
+            <span class="media-title">Chaos and Cannabis</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://searchlightnm.org/fined-and-stripped-of-his-marijuana-license-dineh-benally-keeps-on-growing/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Searchlight NM</span>
+            <span class="media-title">Fined and Stripped of His Marijuana License, Dineh Benally Keeps On Growing</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://searchlightnm.org/a-green-light-for-dineh-benally/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Searchlight NM</span>
+            <span class="media-title">A Green Light for Dineh Benally</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://www.hcn.org/issues/53-5/south-marijuana-investigation-illegal-cannabis-operation-looks-for-roots-in-indigenous-communities/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">High Country News</span>
+            <span class="media-title">Illegal Cannabis Operation Looks for Roots in Indigenous Communities</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://projectcbd.org/policy/showdown-at-navajo-nation/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Project CBD</span>
+            <span class="media-title">Showdown at Navajo Nation</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="https://ganjapreneur.com/fbi-and-navajo-police-raid-hemp-farm-on-tribal-land/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">Ganjapreneur</span>
+            <span class="media-title">FBI and Navajo Police Raid Hemp Farm on Tribal Land</span>
+            <span class="media-year"></span>
+            <span class="media-arrow">→</span>
+          </a>
+          <a href="http://archive.uscstoryspace.com/2018-2019/wang204/Capstone/" target="_blank" rel="noopener" class="media-row">
+            <span class="outlet-badge">USC Archive</span>
+            <span class="media-title">Capstone Research Documentation</span>
+            <span class="media-year">2019</span>
+            <span class="media-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 3 — OFFICIAL RECORD
+  ══════════════════════════════════════════════ -->
+  <section id="record" class="media-section bg-veil">
+    <div class="inner">
+      <div class="section-intro">
+        <div>
+          <p class="eyebrow">Official Record</p>
+          <h2>Legal filings &amp;<br><em>federal actions.</em></h2>
+        </div>
+        <div class="side-note">
+          <p>DOJ press releases, law enforcement actions, court filings, and government documentation related to the trafficking operations addressed by 505 GET FREE and its network.</p>
+        </div>
+      </div>
+
+      <div class="media-list">
+        <a href="https://www.justice.gov/usao-nm/pr/joint-law-enforcement-operation-results-major-eradication-northwest-new-mexico" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">DOJ</span>
+          <span class="media-title">Joint Law Enforcement Operation Results in Major Eradication in Northwest New Mexico</span>
+          <span class="media-year"></span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://www.justice.gov/usao-nm/pr/shiprock-man-pleads-guilty-leading-massive-illegal-marijuana-operation" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">DOJ</span>
+          <span class="media-title">Shiprock Man Pleads Guilty to Leading Massive Illegal Marijuana Operation</span>
+          <span class="media-year"></span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://nndoj.navajo-nsn.gov/Portals/0/Press%20Releases/2020/2020.11.10%20PR-Operation%20Navajo%20Gold%20conducted%20by%20joint%20law%20enforcement%20to%20stop%20illegal%20marijuana.pdf" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge pdf">PDF · Navajo DOJ</span>
+          <span class="media-title">Operation Navajo Gold: Joint Law Enforcement Press Release</span>
+          <span class="media-year">2020</span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://www.jenner.com/en/news-insights/news/jenner-and-block-secures-major-victory-for-the-navajo-nation-in-fight-against-illegal-marijuana-operation-news" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge">Jenner &amp; Block</span>
+          <span class="media-title">Jenner &amp; Block Secures Major Victory for the Navajo Nation in Fight Against Illegal Marijuana Operation</span>
+          <span class="media-year"></span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://turtletalk.blog/wp-content/uploads/2020/09/2020_06_12_navajo_v_benally___complaint_3.pdf" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge pdf">PDF · Court Filing</span>
+          <span class="media-title">Navajo Nation v. Benally — Civil Complaint</span>
+          <span class="media-year">2020</span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://portal.cops.usdoj.gov/resourcecenter/content.ashx/cops-r1131-pub.pdf" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge pdf">PDF · USDOJ COPS</span>
+          <span class="media-title">Community Oriented Policing Services: Resource Publication</span>
+          <span class="media-year"></span>
+          <span class="media-arrow">→</span>
+        </a>
+        <a href="https://www.nmlegis.gov/handouts/LHHS%20100213%20Item%2011%20Lynn%20Sanchez%20MA%20LPCC%20and%20Michael%20DeBernardi%20PsyD%20The%20Life%20Link%20Human%20Trafficking%20Aftercare.pdf" target="_blank" rel="noopener" class="media-row">
+          <span class="outlet-badge pdf">PDF · NM Legislature</span>
+          <span class="media-title">The Life Link Human Trafficking Aftercare — Legislative Testimony (Lynn Sanchez &amp; Dr. Michael DeBernardi)</span>
+          <span class="media-year">2013</span>
+          <span class="media-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 4 — VIDEO
+  ══════════════════════════════════════════════ -->
+  <section id="video" class="media-section bg-paper">
+    <div class="inner">
+      <div class="section-intro">
+        <div>
+          <p class="eyebrow">Video</p>
+          <h2>On <em>screen.</em></h2>
+        </div>
+        <div class="side-note">
+          <p>Broadcast segments, documentary coverage, and recorded testimony related to trafficking in New Mexico and the work of 505 GET FREE.</p>
+        </div>
+      </div>
+
+      <div class="video-grid">
+        <a href="https://www.youtube.com/watch?v=lN2YfdhFUQ0" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb"><span class="play-icon">▶</span></div>
+          <div class="video-body">
+            <span class="outlet-badge video">YouTube</span>
+            <p class="fc-title" style="margin-top: 10px;">Video Coverage — 505 GET FREE / Navajo Investigation</p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=5_zhhghmdCM" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb"><span class="play-icon">▶</span></div>
+          <div class="video-body">
+            <span class="outlet-badge video">YouTube</span>
+            <p class="fc-title" style="margin-top: 10px;">Video Coverage — 505 GET FREE / Navajo Investigation</p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=wzdkmb5Zjas" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb"><span class="play-icon">▶</span></div>
+          <div class="video-body">
+            <span class="outlet-badge video">YouTube</span>
+            <p class="fc-title" style="margin-top: 10px;">Video Coverage — 505 GET FREE / Navajo Investigation</p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=M7TNP2OTY2g" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb"><span class="play-icon">▶</span></div>
+          <div class="video-body">
+            <span class="outlet-badge video">YouTube</span>
+            <p class="fc-title" style="margin-top: 10px;">Video Coverage — 505 GET FREE / Navajo Investigation</p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=pt5-G2KgHi8" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb"><span class="play-icon">▶</span></div>
+          <div class="video-body">
+            <span class="outlet-badge video">YouTube</span>
+            <p class="fc-title" style="margin-top: 10px;">Video Coverage — 505 GET FREE / Navajo Investigation</p>
+          </div>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top: 28px; font-size:13px; color: var(--ink-muted); font-style: italic;">
+        Video titles above are placeholders — update with actual titles from each YouTube link.
+      </p>
+
+    </div>
+  </section>
+
+  <div id="chrome-bottom"></div>
+
+  <script src="js/chrome.js"></script>
+  <script>
+    // Filter nav — highlight active section on scroll
+    const sections = ['local','navajo','record','video'];
+    const btns = document.querySelectorAll('.filter-btn');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (target){
+          const offset = target.getBoundingClientRect().top + window.scrollY - 140;
+          window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Scroll spy
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          btns.forEach(b => b.classList.remove('active'));
+          const match = document.querySelector(`.filter-btn[data-target="${e.target.id}"]`);
+          if (match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Show more toggles
+    document.querySelectorAll('.show-more-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        target.classList.toggle('open');
+        btn.textContent = target.classList.contains('open')
+          ? 'Show less'
+          : `Show all ${btn.dataset.count} national articles`;
+      });
+    });
+  </script>
+</body>
+</html>

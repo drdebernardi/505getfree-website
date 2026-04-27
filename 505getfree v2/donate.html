@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate · 505 GET FREE</title>
+  <meta name="description" content="Support 505 GET FREE. Every dollar keeps the hotline open — 24/7, free, and confidential for New Mexico.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/spa.css">
+
+  <style>
+    /* Impact strip */
+    .impact-strip{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .impact-strip .impact{
+      padding: 56px 40px;
+      text-align: center;
+      border-right: 1px solid rgba(29,42,138,.1);
+    }
+    .impact-strip .impact:last-child{ border-right: none; }
+    .impact-strip .impact .n{
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 84px);
+      line-height: 1;
+      font-weight: 300;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 14px;
+    }
+    .impact-strip .impact .n em{ font-style: italic; color: var(--ink); }
+    .impact-strip .impact .l{
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      max-width: 240px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Suggested amounts */
+    .amounts-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .amount-card{
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,.08);
+      border-radius: var(--radius);
+      padding: 48px 36px 42px;
+      text-align: left;
+      transition: all .3s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .amount-card::before{
+      content:"";
+      position: absolute;
+      left: 36px; top: 36px;
+      width: 40px; height: 1px;
+      background: var(--sky);
+      transition: width .4s var(--ease);
+    }
+    .amount-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -36px rgba(14,26,102,.3);
+    }
+    .amount-card:hover::before{ width: 80px; }
+    .amount-card .amt{
+      font-family: var(--serif);
+      font-size: clamp(56px, 6vw, 80px);
+      font-weight: 300;
+      color: var(--navy);
+      letter-spacing: -0.015em;
+      margin: 48px 0 18px;
+      line-height: 1;
+    }
+    .amount-card .amt em{ font-style: italic; color: var(--ink); font-size: 0.7em; }
+    .amount-card p{
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .amount-card a{
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--navy);
+      border-bottom: 1px solid var(--navy);
+      padding-bottom: 3px;
+      transition: letter-spacing .3s var(--ease);
+      display: inline-block;
+    }
+    .amount-card a:hover{ letter-spacing: 0.32em; }
+
+    /* Ways to give */
+    .ways-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .way{
+      padding: 60px 44px;
+      border-right: 1px solid rgba(29,42,138,.08);
+    }
+    .way:last-child{ border-right: none; }
+    .way .way-num{
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 18px;
+    }
+    .way h3{
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .way h3 em{ font-style: italic; color: var(--navy); font-weight: 300; }
+    .way p{ font-size: 15px; line-height: 1.75; margin-bottom: 20px; }
+    .way .addr{
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      padding: 14px 0;
+      border-top: 1px solid rgba(29,42,138,.1);
+      border-bottom: 1px solid rgba(29,42,138,.1);
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .way a.way-link{
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--navy);
+      border-bottom: 1px solid var(--navy);
+      padding-bottom: 3px;
+      transition: letter-spacing .3s var(--ease);
+      display: inline-block;
+    }
+    .way a.way-link:hover{ letter-spacing: 0.32em; }
+
+    @media (max-width: 1000px){
+      .impact-strip{ grid-template-columns: 1fr; }
+      .impact-strip .impact{ border-right: none; border-bottom: 1px solid rgba(29,42,138,.1); }
+      .impact-strip .impact:last-child{ border-bottom: none; }
+      .amounts-grid{ grid-template-columns: 1fr; }
+      .ways-grid{ grid-template-columns: 1fr; }
+      .way{ border-right: none; border-bottom: 1px solid rgba(29,42,138,.08); }
+      .way:last-child{ border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="chrome-top"></div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <p class="eyebrow">Support the Mission</p>
+    <h1>Every dollar keeps<br>the <em>line open.</em></h1>
+    <p>The hotline operates 24/7 because people need help at all hours. Your donation funds trained advocates, community education, and survivor connections.</p>
+    <div class="hero-actions">
+      <a href="https://thelifelink.org/donate" target="_blank" class="btn btn-primary">Donate Now <span class="arrow">→</span></a>
+      <a href="#ways" class="btn btn-ghost">Other ways to give</a>
+    </div>
+  </section>
+
+  <!-- Impact numbers -->
+  <section class="bg-paper">
+    <div class="inner">
+      <div class="impact-strip">
+        <div class="impact">
+          <span class="n"><em>24/7</em></span>
+          <span class="l">Hours per day the hotline is staffed</span>
+        </div>
+        <div class="impact">
+          <span class="n">$<em>0</em></span>
+          <span class="l">Cost to call or text, always</span>
+        </div>
+        <div class="impact">
+          <span class="n">2012</span>
+          <span class="l">Year the hotline was established</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Suggested amounts -->
+  <section class="pad-lg bg-veil">
+    <div class="inner">
+      <div class="section-head center reveal">
+        <p class="eyebrow">How Your Gift Helps</p>
+        <h2>What each <em>dollar does.</em></h2>
+        <p>Small gifts compound into real coverage. Here's what a few example amounts fund.</p>
+      </div>
+      <div class="amounts-grid">
+        <div class="amount-card reveal">
+          <span class="amt">$<em>25</em></span>
+          <p>Covers <strong>one hour</strong> of advocate time on the hotline — long enough to answer a call, make a referral, and follow up.</p>
+          <a href="https://thelifelink.org/donate" target="_blank">Give $25 →</a>
+        </div>
+        <div class="amount-card reveal">
+          <span class="amt">$<em>100</em></span>
+          <p>Funds awareness materials — posters, cards, and training handouts — for <strong>one community event.</strong></p>
+          <a href="https://thelifelink.org/donate" target="_blank">Give $100 →</a>
+        </div>
+        <div class="amount-card reveal">
+          <span class="amt">$<em>250</em></span>
+          <p>Supports one month of hotline operations for <strong>one rural region</strong> of New Mexico.</p>
+          <a href="https://thelifelink.org/donate" target="_blank">Give $250 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ways to give -->
+  <section id="ways" class="bg-porcelain">
+    <div class="inner" style="max-width: 1400px;">
+      <div class="section-head center reveal" style="padding: 96px 0 40px;">
+        <p class="eyebrow">Ways to Give</p>
+        <h2>Three paths, <em>one mission.</em></h2>
+      </div>
+    </div>
+    <div class="ways-grid" style="max-width: 1400px; margin: 0 auto; border-top: 1px solid rgba(29,42,138,.08); border-bottom: 1px solid rgba(29,42,138,.08);">
+      <div class="way reveal">
+        <span class="way-num">— i.</span>
+        <h3>Give <em>Online</em></h3>
+        <p>Donate through The Life Link's secure donation portal. Your contribution is tax-deductible. One-time or recurring.</p>
+        <a href="https://thelifelink.org/donate" target="_blank" class="way-link">Donate Online →</a>
+      </div>
+      <div class="way reveal">
+        <span class="way-num">— ii.</span>
+        <h3>Give by <em>Mail</em></h3>
+        <p>Make check payable to <strong>The Life Link</strong> with memo <strong>"505 GET FREE"</strong>. Mail to:</p>
+        <div class="addr">The Life Link<br>2325 Cerrillos Road<br>Santa Fe, NM 87505</div>
+        <a href="mailto:505getfree@gmail.com" class="way-link">Questions? Email Us →</a>
+      </div>
+      <div class="way reveal">
+        <span class="way-num">— iii.</span>
+        <h3>Other Ways<br>to <em>Give</em></h3>
+        <p>Explore employer matching programs, planned giving, corporate partnerships, or grant opportunities. For major gifts or philanthropic partnerships, reach out directly.</p>
+        <a href="mailto:505getfree@gmail.com" class="way-link">Contact Us →</a>
+      </div>
+    </div>
+    <div style="padding: 72px 48px 96px; text-align:center;">
+      <p style="max-width: 560px; margin: 0 auto; font-size: 15px; line-height: 1.8;">
+        The Life Link is a 501(c)(3) nonprofit. All donations are tax-deductible to the extent allowed by law. EIN available upon request.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="cta-band">
+    <p class="eyebrow">Your Turn</p>
+    <h2>One gift, <em>any size,</em><br>keeps the line open.</h2>
+    <p>When you give to 505 GET FREE, you're paying for the advocate who answers when someone calls at 3 a.m. That matters.</p>
+    <div class="cta-buttons">
+      <a href="https://thelifelink.org/donate" target="_blank" class="btn btn-light">Donate Today <span class="arrow">→</span></a>
+      <a href="about.html" class="btn btn-outline-light">Learn About Us</a>
+    </div>
+  </section>
+
+  <div id="chrome-bottom"></div>
+
+  <script src="js/chrome.js"></script>
+</body>
+</html>
