@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人口贩运警示 — Print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#B91C1C;
+    --red-deep:#9C1414;
+    --ink:#3F3F3F;
+    --ink-strong:#262626;
+    --bg:#D7D5D2;
+    --paper:#FFFFFF;
+    --teal:#1E7C8A;
+    --gold:#D9B441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#222;font-family:'Noto Sans SC', system-ui, -apple-system, sans-serif;color:var(--ink-strong);}
+  body{background:#fff;display:block;padding:0;margin:0}
+
+  /* US Letter portrait at print scale; the screen view scales it down via container */
+  .poster{ width:8.5in; min-height:11in; background:var(--paper); display:flex; flex-direction:column; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  /* RED TITLE BAR */
+  .title-bar{
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    background: var(--red);
+    color: #fff;
+    padding: 0.42in 0.55in 0.42in;
+    border-bottom: 6px solid var(--red);
+  }
+  .title-bar h1{
+    font-family:'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1.0;
+    letter-spacing: 0.04em;
+    text-align:center;
+  }
+  .title-bar .en{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0.92;
+  }
+  .title-rule{
+    height: 4px;
+    background: var(--red);
+  }
+
+  /* BODY */
+  .body-area{
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    flex:1;
+    background: var(--bg);
+    padding: 0.55in 0.55in 0.4in;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .lede{
+    font-family:'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.4;
+    color: var(--ink-strong);
+    letter-spacing: 0.02em;
+    max-width: 6.6in;
+    margin-top: 4px;
+  }
+
+  .block{
+    margin-top: 28px;
+    color: var(--ink);
+  }
+  .block .label{
+    font-family:'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    line-height: 1.55;
+  }
+  .block .label .en{
+    display:block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: #6b6b6b;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .block .num{
+    color: var(--red);
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    margin-top: 6px;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+
+  .block-multiline .label{ line-height: 1.7; }
+
+  .anon{
+    margin-top: 26px;
+    font-family:'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #555;
+    letter-spacing: 0.04em;
+    max-width: 6in;
+    line-height: 1.5;
+  }
+  .anon .en{
+    display:block;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #888;
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+
+  /* RED BANNER */
+  .banner{
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    background: var(--red);
+    color: #fff;
+    text-align:center;
+    padding: 18px 24px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    letter-spacing: 0.04em;
+  }
+  .banner .small{
+    display:block;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  /* FOOTER LEGAL */
+  .legal{
+    background: var(--paper);
+    padding: 0.32in 0.55in 0.4in;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .legal-text{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink-strong);
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    max-width: 4.8in;
+  }
+  .legal-text .en{
+    display:block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: #777;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* DEPT MARK */
+  .dept{
+    text-align: right;
+    color: var(--teal);
+    font-family: 'Noto Serif SC', serif;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .dept .top{
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+  .dept .mid{
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+  .dept .icon{
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    margin: 4px 0 2px;
+    font-style: normal;
+  }
+  .dept .bot{
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--teal);
+    letter-spacing: 0.06em;
+  }
+
+  /* Print */
+  @media print{
+    html,body{background:#fff;margin:0;padding:0}
+    .poster{box-shadow:none;width:8.5in;min-height:11in;page-break-after:avoid;break-after:avoid}
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
+    @page{ size: letter portrait; margin: 0; }
+  }
+
+  
+</style>
+</head>
+<body>
+
+  <article class="poster" role="document" aria-label="Notice on human trafficking, Mandarin">
+    <header class="title-bar">
+      <h1>人口贩运警示</h1>
+      <div class="en">NOTICE ON HUMAN TRAFFICKING</div>
+    </header>
+    <div class="title-rule"></div>
+
+    <section class="body-area">
+      <p class="lede">
+        如果您或您认识的人是此类犯罪的受害者,<br>
+        请联系以下机构:
+      </p>
+
+      <div class="block">
+        <div class="label">
+          在新墨西哥州,请致电或发短信至
+          <span class="en">In New Mexico, call or text</span>
+        </div>
+        <div class="num">505-GET-FREE&nbsp;&nbsp;(505-438-3733)</div>
+      </div>
+
+      <div class="block block-multiline">
+        <div class="label">
+          或免费拨打全国人口贩运资源中心热线<br>
+          寻求帮助
+          <span class="en">Or call the National Human Trafficking Resource Center hotline toll-free</span>
+        </div>
+        <div class="num">1-888-373-7888</div>
+      </div>
+
+      <div class="block">
+        <div class="label">
+          您也可以发送短信
+          <span style="color:var(--red);font-weight:900;">「HELP」</span>
+          或
+          <span style="color:var(--red);font-weight:900;">「INFO」</span>
+          至
+          <span style="color:var(--red);font-weight:900;">BEFREE(233733)</span>
+          <span class="en">You may also send the text "HELP" or "INFO" to BeFree (233733)</span>
+        </div>
+      </div>
+
+      <p class="anon">
+        您可以保持匿名,您的来电或短信将完全保密。
+        <span class="en">You may remain anonymous, and your call or text is confidential</span>
+      </p>
+    </section>
+
+    <div class="banner">
+      505-GET-FREE&nbsp;&nbsp;(505-438-3733)
+      <span class="small">24 小时 · 全天候热线 &nbsp;·&nbsp; 24/7 HOTLINE</span>
+    </div>
+
+    <footer class="legal">
+      <div class="legal-text">
+        在新墨西哥州及联邦法律下,<br>
+        强迫他人劳动或提供服务属于犯罪行为。
+        <span class="en">Obtaining forced labor or services is a crime under New Mexico and federal law</span>
+      </div>
+      <div class="dept" aria-label="New Mexico Department of Workforce Solutions">
+        <div class="top">New Mexico</div>
+        <div class="mid">Department of</div>
+        <div class="icon">✦ ✦ ✦</div>
+        <div class="bot">WORKFORCE<br>SOLUTIONS</div>
+      </div>
+    </footer>
+  </article>
+
+
+<script>
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e){}
+    setTimeout(() => { window.print(); }, 500);
+  })();
+</script>
+</body>
+</html>

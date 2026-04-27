@@ -191,6 +191,90 @@
     .team-note p em{ font-family: var(--serif); font-style: italic; color: var(--navy); font-size: 17px; }
     .team-note a{ color: var(--navy); border-bottom: 1px solid rgba(29,42,138,.35); }
 
+    /* Team grid */
+    .team-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .team-card{
+      background: var(--paper);
+      border: 1px solid rgba(29,42,138,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+    }
+    .team-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -36px rgba(14,26,102,.25);
+    }
+    .team-photo{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--porcelain), var(--mist));
+    }
+    .team-photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .team-photo-placeholder{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: .4;
+    }
+    .team-body{
+      padding: 28px 28px 32px;
+    }
+    .team-name{
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .team-title{
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+    .team-bio{
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+    }
+    .team-email{
+      font-size: 13px;
+      color: var(--navy);
+      border-bottom: 1px solid rgba(29,42,138,0.3);
+      padding-bottom: 2px;
+      transition: border-color .25s var(--ease);
+    }
+    .team-email:hover{ border-color: var(--navy); }
+
+    @media (max-width: 1100px){
+      .team-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px){
+      .team-grid{ grid-template-columns: 1fr; gap: 24px; }
+    }
+
     /* Partners */
     .partner-grid{
       display: grid;
@@ -436,10 +520,52 @@
         <h2>Trained advocates <em>on the other end of the line.</em></h2>
         <p>Every call to 505 GET FREE is answered by a human — a trained advocate coordinated through The Life Link's anti-trafficking program team, with specialized training in trauma-informed care, crisis response, and survivor-centered service.</p>
       </div>
-      <div class="team-note reveal">
-        <p><em>Staff profiles are coming soon.</em></p>
+      <div class="team-grid reveal">
+
+        <!-- STAFF CARD 1 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-placeholder">photo</div>
+            <!-- To use a real photo, replace the placeholder above with:
+                 <img src="images/staff/firstname-lastname.jpg" alt="First Last"> -->
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">First Last</h3>
+            <p class="team-title">Program Director</p>
+            <p class="team-bio">Two or three sentences about this person — their role, what they bring to the work, maybe a credential or year they joined. Keep it warm but brief.</p>
+            <a href="mailto:name@example.org" class="team-email">name@example.org</a>
+          </div>
+        </article>
+
+        <!-- STAFF CARD 2 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-placeholder">photo</div>
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">First Last</h3>
+            <p class="team-title">Lead Advocate</p>
+            <p class="team-bio">Two or three sentences about this person — their role, what they bring to the work, maybe a credential or year they joined.</p>
+          </div>
+        </article>
+
+        <!-- STAFF CARD 3 -->
+        <article class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-placeholder">photo</div>
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">First Last</h3>
+            <p class="team-title">Outreach Coordinator</p>
+            <p class="team-bio">Two or three sentences about this person — their role, what they bring to the work, maybe a credential or year they joined.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="team-note reveal" style="margin-top: 64px; text-align: center;">
         <p>For program inquiries, media requests, or partnership questions, please reach out directly.</p>
-        <p style="margin-top: 22px;"><a href="mailto:505getfree@gmail.com">505getfree@gmail.com</a></p>
+        <p style="margin-top: 16px;"><a href="mailto:505getfree@gmail.com">505getfree@gmail.com</a></p>
       </div>
     </div>
   </section>

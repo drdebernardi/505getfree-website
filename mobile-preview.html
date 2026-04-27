@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Preview · 505 GET FREE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    html, body{
+      margin: 0; padding: 0;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0c11;
+      color: #e9ebf2;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .page-head{
+      padding: 48px 56px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .page-head .eyebrow{
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #8fc4de;
+      margin-bottom: 14px;
+    }
+    .page-head h1{
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+    }
+    .page-head h1 em{ font-style: italic; color: #8fc4de; }
+    .page-head p{
+      max-width: 620px;
+      color: rgba(233,235,242,.65);
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    #root{
+      width: 100%;
+      height: calc(100vh - 180px);
+      min-height: 900px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-head">
+    <p class="eyebrow">Mobile Preview · iPhone 15 Pro</p>
+    <h1>505 GET FREE on <em>mobile.</em></h1>
+    <p>Every page rendered inside an iPhone frame — scroll the canvas, pinch to zoom, or tap the ⤢ icon on any artboard to go fullscreen. The frames display the live responsive design from each HTML file.</p>
+  </div>
+
+  <div id="root"></div>
+
+  <script type="text/babel" src="ios-frame.jsx"></script>
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" data-presets="env,react">
+    const { useState, useEffect } = React;
+
+    const PAGES = [
+      { id: 'index',      label: 'Home',          file: 'index.html' },
+      { id: 'get-help',   label: 'Get Help',      file: 'get-help.html' },
+      { id: 'resources',  label: 'Resources',     file: 'resources.html' },
+      { id: 'about',      label: 'About',         file: 'about.html' },
+      { id: 'reporting',  label: 'Reporting',     file: 'reporting.html' },
+      { id: 'news',       label: 'News & Media',  file: 'news.html' },
+      { id: 'get-listed', label: 'Get Listed',    file: 'get-listed.html' },
+      { id: 'donate',     label: 'Donate',        file: 'donate.html' },
+      { id: 'signage',    label: 'Signage',       file: 'signage.html' },
+    ];
+
+    function PagePhone({ file }){
+      return (
+        <IOSDevice width={402} height={874}>
+          <iframe
+            src={file}
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'none',
+              background: '#faf9f5',
+              display: 'block',
+            }}
+            title={file}
+          />
+        </IOSDevice>
+      );
+    }
+
+    function App(){
+      return (
+        <DesignCanvas initialScale={0.7}>
+          <DCSection id="pages" title="Website — Mobile Views">
+            {PAGES.map(p => (
+              <DCArtboard
+                key={p.id}
+                id={p.id}
+                label={p.label}
+                width={402}
+                height={874}
+              >
+                <PagePhone file={p.file} />
+              </DCArtboard>
+            ))}
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
