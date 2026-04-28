@@ -577,15 +577,48 @@ footer{
 .footer-exit-btn{
   background: var(--red);
   color:#fff;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 400;
-  padding: 10px 22px;
-  border-radius: 100px;
-  transition: all .25s;
+  line-height: 1.15;
+  width: 58px;
+  height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(29% 0%, 71% 0%, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0% 71%, 0% 29%);
+  position: relative;
+  border: none;
+  cursor: pointer;
+  transition: filter .2s, transform .3s var(--ease);
+  flex-shrink: 0;
 }
-.footer-exit-btn:hover{ filter: brightness(.88); }
+.footer-exit-btn::before{
+  content:'';
+  position:absolute; inset:5px;
+  border: 1px solid rgba(255,255,255,.75);
+  clip-path: polygon(29% 0%, 71% 0%, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0% 71%, 0% 29%);
+  pointer-events: none;
+}
+.footer-exit-btn:hover{ filter: brightness(.88); transform: rotate(-6deg); }
+
+/* Footer danger note */
+.footer-danger-note{
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+  background: rgba(178,72,64,.25);
+  border: 1px solid rgba(178,72,64,.5);
+  border-radius: 100px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.footer-danger-note a{ color: #fff; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,.5); }
+.footer-danger-icon{ font-size: 13px; opacity: .8; }
 
 /* ──────────────────────────────────────────────────────────
    UTIL
@@ -612,7 +645,31 @@ footer{
   .nav-links{ display:none; }
   .hamburger{ display:flex; }
   .mobile-nav{ top: 72px; }
-  .topbar{ font-size: 10px; gap: 18px; padding: 9px 18px; }
+  .topbar{
+    padding: 0;
+    gap: 0;
+    justify-content: stretch;
+  }
+  .topbar > span:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 16px;
+    font-size: 11px;
+    letter-spacing: .12em;
+  }
+  .topbar > span:first-child .topbar-text{ display: none; }
+  .topbar > span:first-child .topbar-call{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: .08em;
+  }
+  .topbar > span:last-child{ display: none; }
   .page-hero{ padding: 72px 22px 56px; }
   .inner{ padding: 0 22px; }
   .pad-xl{ padding: 80px 0; }

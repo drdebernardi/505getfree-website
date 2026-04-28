@@ -5,7 +5,7 @@
 (function(){
   const TOP = `
   <div class="topbar">
-    <span><span class="dot"></span> Hotline open 24 / 7 · Call or Text (505) 438-3733</span>
+    <span><span class="dot"></span><span class="topbar-text"> Hotline open 24 / 7 · Call or Text</span> <a href="tel:+15054383733" class="topbar-call">(505) 438-3733</a></span>
     <span>Free · Confidential · Statewide</span>
   </div>
   <nav class="primary">
@@ -121,8 +121,8 @@
     </div>
     <div class="footer-bottom">
       <p>© 2026 505 GET FREE · <a href="mailto:505getfree@gmail.com">505getfree@gmail.com</a></p>
-      <p style="opacity:.55;">If you are in danger, call 911.</p>
-      <button class="footer-exit-btn" onclick="exitSite()">Exit this site</button>
+      <p class="footer-danger-note"><span class="footer-danger-icon">⚠</span> If you are in immediate danger, call <a href="tel:911">911</a>.</p>
+      <button class="footer-exit-btn" onclick="exitSite()">EXIT<br>SITE</button>
     </div>
   </footer>`;
 

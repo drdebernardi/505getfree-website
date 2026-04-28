@@ -135,17 +135,22 @@
       box-shadow: 0 0 0 3px rgba(29,42,138,.08);
     }
 
+    /* Category filters — scrollable row on desktop */
     .category-filters{
       display: flex;
       gap: 8px;
-      flex-wrap: wrap;
       flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
+    .category-filters::-webkit-scrollbar{ display: none; }
+
     .cat-chip{
       font-family: var(--sans);
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       padding: 8px 16px;
       border-radius: 100px;
@@ -153,6 +158,8 @@
       background: transparent;
       color: var(--ink);
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: all .2s var(--ease);
     }
     .cat-chip:hover{ border-color: var(--navy); color: var(--navy); }
@@ -164,15 +171,90 @@
       font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border: none;
       background: transparent;
       color: var(--ink-muted);
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
     .clear-filters:hover{ color: var(--navy); }
+
+    /* Mobile filter button + dropdown */
+    .mobile-filter-btn{
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(29,42,138,.2);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all .2s var(--ease);
+    }
+    .mobile-filter-btn:hover{ border-color: var(--navy); color: var(--navy); }
+    .mobile-filter-btn.has-active{ background: var(--navy); color: #fff; border-color: var(--navy); }
+    .mobile-filter-badge{
+      background: #fff;
+      color: var(--navy);
+      font-size: 10px;
+      font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .mobile-filter-btn:not(.has-active) .mobile-filter-badge{ display: none; }
+
+    /* Filter dropdown panel (mobile) */
+    .filter-dropdown{
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: var(--paper);
+      border-bottom: 1px solid rgba(29,42,138,.1);
+      box-shadow: 0 16px 40px -16px rgba(14,26,102,.2);
+      padding: 20px;
+      z-index: 50;
+    }
+    .filter-dropdown.open{ display: block; }
+    .filter-dropdown-chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .filter-dropdown-footer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(29,42,138,.08);
+    }
+    .filter-dropdown-count{
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 760px){
+      .filter-controls{ gap: 10px; }
+      .category-filters{ display: none; }
+      .clear-filters{ display: none; }
+      .mobile-filter-btn{ display: inline-flex; }
+    }
 
     /* Layout: list + map */
     .res-layout{
@@ -418,8 +500,23 @@
           </svg>
           <input type="search" id="search-input" class="search-input" placeholder="Search by name or service…" autocomplete="off">
         </div>
+        <!-- Desktop: scrollable chip row -->
         <div class="category-filters" id="category-filters"></div>
         <button class="clear-filters" id="clear-filters" onclick="clearFilters()">Clear all</button>
+        <!-- Mobile: filter button + dropdown -->
+        <button class="mobile-filter-btn" id="mobile-filter-btn" onclick="toggleFilterDropdown()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+          Filter
+          <span class="mobile-filter-badge" id="mobile-filter-badge">0</span>
+        </button>
+      </div>
+      <!-- Mobile dropdown panel -->
+      <div class="filter-dropdown" id="filter-dropdown">
+        <div class="filter-dropdown-chips" id="filter-dropdown-chips"></div>
+        <div class="filter-dropdown-footer">
+          <span class="filter-dropdown-count" id="filter-dropdown-count">All categories</span>
+          <button class="clear-filters" onclick="clearFilters()">Clear all</button>
+        </div>
       </div>
     </div>
   </div>
@@ -461,11 +558,35 @@
     }
 
     function buildCategoryChips(){
-      const c = document.getElementById('category-filters');
-      c.innerHTML = ALL_CATEGORIES.map(cat => `
+      const chips = ALL_CATEGORIES.map(cat => `
         <button class="cat-chip ${activeCategories.has(cat.id) ? 'active' : ''}" onclick="toggleCategory('${cat.id}')">${cat.label}</button>
       `).join('');
+      document.getElementById('category-filters').innerHTML = chips;
+      document.getElementById('filter-dropdown-chips').innerHTML = chips;
+
+      // Update mobile button state
+      const count = activeCategories.size;
+      const btn = document.getElementById('mobile-filter-btn');
+      const badge = document.getElementById('mobile-filter-badge');
+      const countEl = document.getElementById('filter-dropdown-count');
+      badge.textContent = count;
+      btn.classList.toggle('has-active', count > 0);
+      countEl.textContent = count > 0 ? `${count} categor${count === 1 ? 'y' : 'ies'} selected` : 'All categories';
     }
+
+    function toggleFilterDropdown(){
+      const dd = document.getElementById('filter-dropdown');
+      dd.classList.toggle('open');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e){
+      const dd = document.getElementById('filter-dropdown');
+      const btn = document.getElementById('mobile-filter-btn');
+      if (dd && dd.classList.contains('open') && !dd.contains(e.target) && !btn.contains(e.target)){
+        dd.classList.remove('open');
+      }
+    });
 
     function getFiltered(){
       return RESOURCES.filter(r => {
