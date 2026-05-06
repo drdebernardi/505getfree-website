@@ -22,18 +22,19 @@
 const AIRTABLE_BASE            = 'appQ20I7mwqYDEiMo';
 const AIRTABLE_RESOURCES_TABLE = 'tblebhPFf3Yl34TcO';
 
-/* ─── Airtable field IDs ─────────────────────────────────────── */
+/* ─── Airtable field names ───────────────────────────────────── */
+// Airtable REST API returns field names (not IDs) as response keys.
 const RES_FIELDS = {
-  name:        'fldboexBBEHDz1sGw',
-  description: 'fldXafHhOZip7Ce7w',
-  phone:       'fldhCbinMmJk2cyxz',
-  address:     'fldDsmVtBkKJMIoGH',
-  website:     'fldZC4rwe4cis0woc',
-  categories:  'fldujpAvBs1bd4u5g',
-  active:      'fldEtAdUWd2mYzzdA',
-  city:        'fldp9LxfZo5ZO313X',
-  lat:         'fldgHKs4IzF5CnnDf',
-  lng:         'fldp7qFO8GQ63jirm',
+  name:        'Organization Name',
+  description: 'Description',
+  phone:       'Phone Number',
+  address:     'Address',
+  website:     'Organization Website',
+  categories:  'Service Tags',
+  active:      'Active Status',
+  city:        'City',
+  lat:         'Latitude',
+  lng:         'Longitude',
 };
 
 /* ─── Runtime resource store (populated by fetchResourcesFromAirtable) ── */

@@ -1746,13 +1746,13 @@
       try {
         const url =
           'https://api.airtable.com/v0/appQ20I7mwqYDEiMo/tbloePfkHukdQr6FS' +
-          '?fields[]=fldw1zFz2Lh7vvA1h' +   // Headline
-          '&fields[]=fld6TwuKC08h3BAxK' +   // Date
-          '&fields[]=fldxNDLRrHRLokQJJ' +   // Body/Content
-          '&fields[]=fldirVTmK2ZThOl70' +   // Photo
-          '&fields[]=fldi4krIAmSjzya0Y' +   // Published Status
+          '?fields[]=Headline' +
+          '&fields[]=Date' +
+          '&fields[]=' + encodeURIComponent('Body/Content') +
+          '&fields[]=Photo' +
+          '&fields[]=' + encodeURIComponent('Published Status') +
           `&filterByFormula=${encodeURIComponent('{Published Status}=1')}` +
-          '&sort[0][field]=fld6TwuKC08h3BAxK&sort[0][direction]=desc' +
+          '&sort[0][field]=Date&sort[0][direction]=desc' +
           '&pageSize=3';
 
         const res = await fetch(url, {
@@ -1764,10 +1764,10 @@
           if (data.records && data.records.length > 0) {
             posts = data.records.map(rec => {
               const f      = rec.fields;
-              const photos = f['fldirVTmK2ZThOl70'];
+              const photos = f['Photo'];
               return {
-                date:     formatAirtableDate(f['fld6TwuKC08h3BAxK']),
-                caption:  f['fldxNDLRrHRLokQJJ'] || f['fldw1zFz2Lh7vvA1h'] || '',
+                date:     formatAirtableDate(f['Date']),
+                caption:  f['Body/Content'] || f['Headline'] || '',
                 imageUrl: (photos && photos[0]) ? photos[0].url : '',
                 emoji:    '📰'
               };
