@@ -1,4 +1,1 @@
 .DS_Store
-
-# Airtable token — never commit this file
-js/airtable-config.js
