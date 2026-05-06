@@ -486,8 +486,48 @@
       }
 
       heroWrap.innerHTML = heroCard(records[0]);
-      if (records.length > 1) {
-        gridWrap.innerHTML = records.slice(1).map(smallCard).join('');
+
+      const visibleRecs = records.slice(1, 4);   // always show max 3 grid cards
+      const hiddenRecs  = records.slice(4);       // rest tucked behind "see more"
+
+      if (visibleRecs.length) {
+        gridWrap.innerHTML = visibleRecs.map(smallCard).join('');
+      }
+
+      // "See all" button + hidden overflow cards
+      if (hiddenRecs.length) {
+        const extraWrap = document.createElement('div');
+        extraWrap.id = 'ftf-extra-wrap';
+        extraWrap.className = 'ftf-grid-cards';
+        extraWrap.style.cssText = 'margin-top:20px;display:none;';
+        extraWrap.innerHTML = hiddenRecs.map(smallCard).join('');
+        gridWrap.insertAdjacentElement('afterend', extraWrap);
+
+        const seeMoreWrap = document.createElement('div');
+        seeMoreWrap.className = 'show-more-wrap';
+        seeMoreWrap.innerHTML =
+          `<button class="show-more-btn" id="ftf-see-more">See all ${records.length - 1} dispatches</button>`;
+        extraWrap.insertAdjacentElement('afterend', seeMoreWrap);
+
+        document.getElementById('ftf-see-more').addEventListener('click', function () {
+          const extra = document.getElementById('ftf-extra-wrap');
+          const open  = extra.style.display !== 'none';
+          if (open) {
+            extra.style.display = 'none';
+            this.textContent = `See all ${records.length - 1} dispatches`;
+          } else {
+            extra.style.display = 'grid';
+            const newCards = Array.from(extra.querySelectorAll('.ftf-card'));
+            gsap.fromTo(newCards,
+              { opacity: 0, y: 24 },
+              { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' }
+            );
+            newCards.forEach((card, i) => {
+              card.addEventListener('click', () => openModal(records[4 + i]));
+            });
+            this.textContent = 'Show less';
+          }
+        });
       }
 
       // ── Modal system ──────────────────────────────────────────
