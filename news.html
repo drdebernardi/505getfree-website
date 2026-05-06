@@ -127,9 +127,31 @@
     .ftf-card-date{font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--navy);font-weight:400}
     .ftf-card-headline{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.25;color:var(--ink)}
     .ftf-card-body-text{font-size:13px;line-height:1.75;color:var(--ink-muted);font-weight:300;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+    .ftf-hero{cursor:pointer}.ftf-card{cursor:pointer}
     /* Responsive */
     @media(max-width:1100px){.ftf-hero{grid-template-columns:1fr}.ftf-hero-visual{min-height:280px}.ftf-grid-cards{grid-template-columns:1fr 1fr}}
     @media(max-width:760px){.ftf-hero-body{padding:28px 26px 32px}.ftf-grid-cards{grid-template-columns:1fr}}
+
+    /* ── Dispatch modal ─────────────────────────────── */
+    .ftf-modal{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;padding:24px}
+    .ftf-modal[hidden]{display:none}
+    .ftf-modal-backdrop{position:absolute;inset:0;background:rgba(14,26,102,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer}
+    .ftf-modal-panel{position:relative;z-index:1;background:var(--paper);border-radius:var(--radius-lg);max-width:740px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 60px 120px -40px rgba(14,26,102,.5);animation:modalIn .35s var(--ease) both}
+    @keyframes modalIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+    .ftf-modal-close{position:sticky;top:16px;float:right;margin:16px 16px 0 0;width:36px;height:36px;border-radius:50%;background:rgba(29,42,138,.08);border:1px solid rgba(29,42,138,.12);font-size:18px;line-height:1;color:var(--ink-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;z-index:2}
+    .ftf-modal-close:hover{background:var(--navy);color:#fff}
+    .ftf-modal-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+    .ftf-modal-img-placeholder{width:100%;aspect-ratio:21/9;background:linear-gradient(135deg,var(--ink) 0%,var(--navy) 60%,rgba(0,200,230,.2) 100%);border-radius:var(--radius-lg) var(--radius-lg) 0 0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .ftf-modal-img-placeholder::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 30% 60%,rgba(143,196,222,.18),transparent 65%)}
+    .ftf-modal-img-placeholder span{font-family:var(--serif);font-size:100px;color:rgba(255,255,255,.07);font-weight:300;position:relative;z-index:1;letter-spacing:-0.04em}
+    .ftf-modal-content{padding:36px 44px 48px;clear:both}
+    .ftf-modal-eyebrow{font-size:10px;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+    .ftf-modal-eyebrow::before{content:"";width:18px;height:1px;background:var(--navy);opacity:.55}
+    .ftf-modal-date{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-muted);margin-bottom:16px}
+    .ftf-modal-headline{font-family:var(--serif);font-size:clamp(26px,3.5vw,40px);font-weight:400;line-height:1.12;color:var(--ink);letter-spacing:-0.012em;margin-bottom:28px}
+    .ftf-modal-divider{height:1px;background:rgba(29,42,138,.1);margin-bottom:28px}
+    .ftf-modal-body-text{font-size:16px;line-height:1.9;color:var(--ink-muted);font-weight:300;white-space:pre-wrap}
+    @media(max-width:600px){.ftf-modal-content{padding:24px 24px 36px}.ftf-modal-headline{font-size:26px}}
 
     @media(max-width:1100px){nav.primary{padding:0 32px}.inner{padding:0 32px}.section-intro{grid-template-columns:1fr;gap:20px}.feat-grid{grid-template-columns:1fr 1fr}.video-grid{grid-template-columns:1fr 1fr}.footer-inner{grid-template-columns:1fr 1fr;gap:36px}}
     @media(max-width:760px){nav.primary{height:72px;padding:0 22px}.nav-logo img{height:50px}.nav-links{display:none}.hamburger{display:flex}.mobile-nav{top:72px}.topbar{padding:0;gap:0;justify-content:stretch}.topbar>span:first-child{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:9px 16px;font-size:11px;letter-spacing:.12em}.topbar>span:last-child{display:none}.page-hero{padding:80px 22px 64px}.filter-nav-inner{padding:0 22px}.media-section{padding:56px 0 40px}.media-row{grid-template-columns:76px 1fr auto}.media-arrow{display:none}.feat-grid{grid-template-columns:1fr}.video-grid{grid-template-columns:1fr}.inner{padding:0 22px}.cta-band{padding:90px 22px}footer{padding:72px 22px 32px}.footer-inner{grid-template-columns:1fr;gap:40px}.footer-bottom{flex-direction:column;align-items:flex-start}}
@@ -331,6 +353,22 @@
     </div>
   </footer>
 
+  <!-- Dispatch modal -->
+  <div id="ftf-modal" class="ftf-modal" hidden aria-modal="true" role="dialog" aria-labelledby="ftf-modal-headline">
+    <div class="ftf-modal-backdrop" id="ftf-modal-backdrop"></div>
+    <div class="ftf-modal-panel" id="ftf-modal-panel">
+      <button class="ftf-modal-close" id="ftf-modal-close" aria-label="Close dispatch">&times;</button>
+      <div id="ftf-modal-top"></div>
+      <div class="ftf-modal-content">
+        <p class="ftf-modal-eyebrow">From the Field</p>
+        <p class="ftf-modal-date" id="ftf-modal-date"></p>
+        <h2 class="ftf-modal-headline" id="ftf-modal-headline"></h2>
+        <div class="ftf-modal-divider"></div>
+        <p class="ftf-modal-body-text" id="ftf-modal-body-text"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- Airtable token — gitignored locally, generated by Netlify build command -->
   <script src="js/airtable-config.js"></script>
   <script>
@@ -452,16 +490,61 @@
         gridWrap.innerHTML = records.slice(1).map(smallCard).join('');
       }
 
-      // Animate in
-      gsap.from('#ftf-hero-wrap .ftf-hero', {
-        scrollTrigger: { trigger: '#ftf-hero-wrap', start: 'top 80%' },
-        opacity: 0, y: 36, duration: 0.9, ease: 'power3.out'
+      // ── Modal system ──────────────────────────────────────────
+      const modal      = document.getElementById('ftf-modal');
+      const modalDate  = document.getElementById('ftf-modal-date');
+      const modalHead  = document.getElementById('ftf-modal-headline');
+      const modalBody  = document.getElementById('ftf-modal-body-text');
+      const modalTop   = document.getElementById('ftf-modal-top');
+      const modalClose = document.getElementById('ftf-modal-close');
+      const modalBack  = document.getElementById('ftf-modal-backdrop');
+
+      function openModal(rec) {
+        // Image or placeholder
+        if (rec.imageUrl) {
+          modalTop.innerHTML = `<img class="ftf-modal-img" src="${rec.imageUrl}" alt="${(rec.headline||'').replace(/"/g,'&quot;')}" loading="lazy">`;
+        } else {
+          modalTop.innerHTML = `<div class="ftf-modal-img-placeholder"><span>505</span></div>`;
+        }
+        modalDate.textContent = rec.date || '';
+        modalHead.textContent = rec.headline || '';
+        modalBody.textContent = rec.body || '';
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        // Scroll panel to top
+        const panel = document.getElementById('ftf-modal-panel');
+        if (panel) panel.scrollTop = 0;
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      modalClose.addEventListener('click', closeModal);
+      modalBack.addEventListener('click', closeModal);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+      // Attach click handlers to cards
+      heroWrap.querySelector('.ftf-hero').addEventListener('click', () => openModal(records[0]));
+      gridWrap.querySelectorAll('.ftf-card').forEach((card, i) => {
+        card.addEventListener('click', () => openModal(records[i + 1]));
       });
-      gsap.from('#ftf-grid-wrap .ftf-card', {
-        scrollTrigger: { trigger: '#ftf-grid-wrap', start: 'top 80%' },
-        opacity: 0, y: 32, rotateX: 10, transformPerspective: 900, transformOrigin: 'top center',
-        duration: 0.65, stagger: 0.1, ease: 'power2.out'
-      });
+
+      // ── Animate in ────────────────────────────────────────────
+      gsap.fromTo('#ftf-hero-wrap .ftf-hero',
+        { opacity: 0, y: 36 },
+        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: '#ftf-hero-wrap', start: 'top 82%', once: true } }
+      );
+      const gridCards = Array.from(gridWrap.querySelectorAll('.ftf-card'));
+      if (gridCards.length) {
+        gsap.fromTo(gridCards,
+          { opacity: 0, y: 32, rotateX: 10, transformPerspective: 900, transformOrigin: 'top center' },
+          { opacity: 1, y: 0, rotateX: 0, duration: 0.65, stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: gridWrap, start: 'top 82%', once: true } }
+        );
+      }
     })();
   </script>
 </body>
