@@ -10,4 +10,4 @@
  * Airtable token, update it here AND in the Netlify environment
  * variable (Site settings → Environment variables → AIRTABLE_TOKEN).
  */
-window.AIRTABLE_TOKEN = 'patOSAcXau4F6EkFd.1a03836c1f22cedb70b9ed0c708cf571f16704c6c07eff1c528ee3873203c551';
+window.AIRTABLE_TOKEN = 'patDpElwpSLuWWY8u.73c045b34d780f30ed2fdf9d6874607cfe80f79933f266110eafa09639c9161c';
