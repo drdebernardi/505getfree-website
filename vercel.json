@@ -1,0 +1,4 @@
+{
+  "buildCommand": "printf 'window.AIRTABLE_TOKEN = \"%s\";\\n' \"$AIRTABLE_TOKEN\" > js/airtable-config.js",
+  "outputDirectory": "."
+}
