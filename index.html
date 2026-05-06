@@ -936,7 +936,8 @@
       color: var(--navy);
       font-weight: 400;
     }
-    .feed-card-caption { font-size: 15px; line-height: 1.75; color: var(--ink-text); font-weight: 300; }
+    .feed-card-headline { font-family: var(--serif); font-size: 20px; font-weight: 400; line-height: 1.25; color: var(--ink); margin-bottom: 4px; }
+    .feed-card-caption { font-size: 13px; line-height: 1.75; color: var(--ink-muted); font-weight: 300; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
     /* ──────────────────────────────────────────────────────────
        PARTNERS
@@ -1714,22 +1715,24 @@
 
       // Static fallback posts shown when Airtable is unreachable or has no published news
       const FALLBACK = [
-        { date: 'Apr 12 · 2026', caption: 'Training 40 new advocates this spring — statewide. If you work in healthcare, education, or justice and want to be trained, reach out.', emoji: '✧', imageUrl: '' },
-        { date: 'Mar 24 · 2026', caption: 'Our mandated-signage kit has been updated. Download posters in English, Spanish, and Diné Bizaad for your workplace.', emoji: '◆', imageUrl: '' },
-        { date: 'Feb 08 · 2026', caption: 'We spoke at the New Mexico Legislature this week about the realities of trafficking in rural communities. Full remarks in News.', emoji: '◇', imageUrl: '' }
+        { date: 'Apr 12 · 2026', headline: 'Training 40 new advocates this spring', body: 'Statewide outreach for healthcare, education, and justice workers across New Mexico. If you want to learn to recognize and respond to trafficking, reach out.', emoji: '✧', imageUrl: '' },
+        { date: 'Mar 24 · 2026', headline: 'Updated mandated-signage kit now available', body: 'Download posters in English, Spanish, and Diné Bizaad for your workplace, hotel lobby, or clinic waiting room — at no cost.', emoji: '◆', imageUrl: '' },
+        { date: 'Feb 08 · 2026', headline: 'Legislative testimony on rural trafficking realities', body: 'We spoke at the New Mexico Legislature this week about trafficking in rural communities. Full remarks available on the News & Media page.', emoji: '◇', imageUrl: '' }
       ];
 
       function buildCard(p) {
+        const safeHeadline = (p.headline || '505 GET FREE update').replace(/"/g, '&quot;');
         const img = p.imageUrl
-          ? `<img class="feed-card-img" src="${p.imageUrl}" alt="505 GET FREE update" loading="lazy"
+          ? `<img class="feed-card-img" src="${p.imageUrl}" alt="${safeHeadline}" loading="lazy"
                style="width:100%;aspect-ratio:4/3;object-fit:cover;">`
-          : `<div class="feed-card-img-placeholder" aria-hidden="true">${p.emoji || '📰'}</div>`;
+          : `<div class="feed-card-img-placeholder" aria-hidden="true">${p.emoji || '◈'}</div>`;
         return `
-          <a href="news.html" class="feed-card">
+          <a href="news.html#field" class="feed-card">
             ${img}
             <div class="feed-card-body">
               <span class="feed-card-date">${p.date}</span>
-              <p class="feed-card-caption">${p.caption}</p>
+              ${p.headline ? `<h3 class="feed-card-headline">${p.headline}</h3>` : ''}
+              ${p.body    ? `<p  class="feed-card-caption">${p.body}</p>` : ''}
             </div>
           </a>`;
       }
@@ -1767,9 +1770,10 @@
               const photos = f['Photo'];
               return {
                 date:     formatAirtableDate(f['Date']),
-                caption:  f['Body/Content'] || f['Headline'] || '',
+                headline: f['Headline'] || '',
+                body:     f['Body/Content'] || '',
                 imageUrl: (photos && photos[0]) ? photos[0].url : '',
-                emoji:    '📰'
+                emoji:    '◈'
               };
             });
           }
