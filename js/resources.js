@@ -183,6 +183,12 @@ async function fetchResourcesFromAirtable() {
     };
   });
 
-  /* Alphabetical sort for consistent listing order */
-  RESOURCES.sort((a, b) => a.name.localeCompare(b.name));
+  /* Sort: The Life Link always first, then alphabetical */
+  RESOURCES.sort((a, b) => {
+    const aIsLL = a.name.trim().toLowerCase() === 'the life link';
+    const bIsLL = b.name.trim().toLowerCase() === 'the life link';
+    if (aIsLL && !bIsLL) return -1;
+    if (!aIsLL && bIsLL) return  1;
+    return a.name.localeCompare(b.name);
+  });
 }
