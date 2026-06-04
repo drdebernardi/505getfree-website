@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
   <style>
     :root{--navy:#1D2A8A;--ink:#0E1A66;--sky:#8FC4DE;
       --turquoise:  #00C8E6;--sky-soft:#B9D7E6;--porcelain:#EAF2F6;--mist:#DCE4E9;--veil:#F4F2ED;--linen:#ECE7DD;--paper:#FBFAF6;--ink-text:#111734;--ink-muted:#5A6180;--red:#B24840;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',ui-sans-serif,system-ui,sans-serif;--radius-sm:4px;--radius:14px;--radius-lg:28px;--ease:cubic-bezier(.2,.7,.2,1)}
@@ -81,13 +82,13 @@
 
     /* Downloads */
     .downloads-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-    .download-card{background:var(--paper);border:1px solid rgba(29,42,138,.08);border-radius:var(--radius);padding:24px 22px 28px;text-align:center;transition:all .3s var(--ease);position:relative}
+    .download-card{background:var(--paper);border:1px solid rgba(29,42,138,.08);border-radius:var(--radius);padding:24px 22px 28px;text-align:center;transition:all .3s var(--ease);position:relative;display:flex;flex-direction:column}
     .download-card:hover{transform:translateY(-4px);box-shadow:0 30px 60px -36px rgba(14,26,102,.25)}
     .download-card h3{font-size:19px;font-weight:400;margin-bottom:4px}
     .download-card .meta{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:16px;display:block}
-    .download-card p{font-size:13px;line-height:1.65;margin-bottom:18px}
+    .download-card p{font-size:13px;line-height:1.65;margin-bottom:18px;flex:1}
+    .download-card .btn{margin-top:auto}
     .poster-preview{aspect-ratio:8.5/11;position:relative;overflow:hidden;border:1px solid rgba(29,42,138,.22);border-radius:4px;margin-bottom:20px;box-shadow:0 6px 20px -8px rgba(14,26,102,.22)}
-    .poster-inner{position:absolute;top:0;left:0;width:320px;transform-origin:top left;font-family:Arial,Helvetica,sans-serif;background:#fff;display:flex;flex-direction:column}
     .pi-header{background:#1a1a1a;color:#fff;padding:10px 14px 8px;display:flex;flex-direction:column;gap:2px;border-bottom:3px solid #c8102e}
     .pi-state{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase}
     .pi-dept{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;opacity:.7}
@@ -211,51 +212,39 @@
       <div class="downloads-grid">
         <!-- ENGLISH -->
         <div class="download-card">
-          <div class="poster-preview"><div class="poster-inner">
-            <div class="pi-header"><div class="pi-state">State of New Mexico</div><div class="pi-dept">Department of Workforce Solutions</div></div>
-            <div class="pi-notice-band"><div class="pi-notice-label">Official Required Posting · NMSA § 30-52-2.1</div><div class="pi-notice-title">NOTICE ON<br>HUMAN TRAFFICKING</div></div>
-            <div class="pi-body"><div class="pi-crime">OBTAINING FORCED LABOR OR SERVICES IS A CRIME UNDER NEW MEXICO AND FEDERAL LAW.</div><div class="pi-if">If you or someone you know is a victim of this crime, contact the following:</div><div class="pi-hotline-box"><div class="pi-hotline-in">In New Mexico — Call or Text</div><div class="pi-hotline-name">505-GET-FREE</div><div class="pi-hotline-num">(505) 438-3733</div><div class="pi-hotline-sub">Call · Text · 24/7 · Anonymous · Confidential</div></div><div class="pi-or">— or —</div><div class="pi-national"><div class="pi-national-label">National Human Trafficking Hotline — Toll Free</div><div class="pi-national-num">1-888-373-7888</div></div><div class="pi-text-option">You may also text <strong>"HELP"</strong> or <strong>"INFO"</strong> to <strong>BEFREE (233733)</strong></div><div class="pi-anon">YOU MAY REMAIN ANONYMOUS.<br>YOUR CALL OR TEXT IS CONFIDENTIAL.</div></div>
-            <div class="pi-footer">dws.state.nm.us · New Mexico Department of Workforce Solutions</div>
-          </div></div>
+          <div class="poster-preview">
+            <img src="images/poster-en-1.png" alt="English human trafficking notice poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
           <h3>English</h3><span class="meta">Official DWS Poster · 8.5″ × 11″</span>
           <p>The official NM Workforce Solutions poster for English-speaking workplaces.</p>
-          <a href="https://www.dws.state.nm.us/Portals/0/DM/Business/Human_Trafficking_Poster.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 22px;font-size:11px;">Download PDF <span class="arrow">→</span></a>
+          <a href="images/Human_Trafficking_Poster%20eng.pdf" download class="btn btn-primary" style="padding:12px 22px;font-size:11px;">Download PDF <span class="arrow">→</span></a>
         </div>
         <!-- SPANISH -->
         <div class="download-card">
-          <div class="poster-preview"><div class="poster-inner">
-            <div class="pi-header"><div class="pi-state">Estado de Nuevo México</div><div class="pi-dept">Departamento de Soluciones para la Fuerza Laboral</div></div>
-            <div class="pi-notice-band"><div class="pi-notice-label">Aviso de Publicación Obligatoria · NMSA § 30-52-2.1</div><div class="pi-notice-title">AVISO SOBRE<br>TRATA DE PERSONAS</div></div>
-            <div class="pi-body"><div class="pi-crime">OBTENER TRABAJO O SERVICIOS FORZADOS ES UN DELITO BAJO LAS LEYES DE NUEVO MÉXICO Y FEDERALES.</div><div class="pi-if">Si usted o alguien que conoce es víctima de este delito, comuníquese con:</div><div class="pi-hotline-box"><div class="pi-hotline-in">En Nuevo México — Llame o Envíe Texto</div><div class="pi-hotline-name">505-GET-FREE</div><div class="pi-hotline-num">(505) 438-3733</div><div class="pi-hotline-sub">Llame · Texto · 24/7 · Anónimo · Confidencial</div></div><div class="pi-or">— o —</div><div class="pi-national"><div class="pi-national-label">Línea Nacional contra la Trata — Gratuita</div><div class="pi-national-num">1-888-373-7888</div></div><div class="pi-text-option">También puede enviar <strong>"HELP"</strong> o <strong>"INFO"</strong> a <strong>BEFREE (233733)</strong></div><div class="pi-anon">PUEDE PERMANECER ANÓNIMO.<br>SU LLAMADA O TEXTO ES CONFIDENCIAL.</div></div>
-            <div class="pi-footer">dws.state.nm.us · Departamento de Soluciones para la Fuerza Laboral</div>
-          </div></div>
+          <div class="poster-preview">
+            <img src="images/poster-es-1.png" alt="Spanish human trafficking notice poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
           <h3>Español</h3><span class="meta">Official DWS Poster · 8.5″ × 11″</span>
           <p>Versión oficial en español. Requerida donde el 10% o más habla español.</p>
-          <a href="https://www.dws.state.nm.us/Portals/0/DM/Business/Human_Trafficking_Poster_Spanish.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 22px;font-size:11px;">Descargar PDF <span class="arrow">→</span></a>
+          <a href="images/Human_Trafficking_Poster_Spanish.pdf" download class="btn btn-primary" style="padding:12px 22px;font-size:11px;">Descargar PDF <span class="arrow">→</span></a>
         </div>
         <!-- NAVAJO -->
         <div class="download-card">
-          <div class="poster-preview"><div class="poster-inner">
-            <div class="pi-header"><div class="pi-state">Naabeehó Bináhásdzo · New Mexico</div><div class="pi-dept">Department of Workforce Solutions</div></div>
-            <div class="pi-notice-band"><div class="pi-notice-label">Diné Bizaad · Official Required Posting</div><div class="pi-notice-title">NOTICE ON<br>HUMAN TRAFFICKING</div><div class="pi-notice-sub">Diné Bizaad · Navajo Language Version</div></div>
-            <div class="pi-body"><div class="pi-crime">OBTAINING FORCED LABOR OR SERVICES IS A CRIME UNDER NEW MEXICO AND FEDERAL LAW.</div><div class="pi-if">If you or someone you know is a victim, contact the following:</div><div class="pi-hotline-box"><div class="pi-hotline-in">In New Mexico — Call or Text</div><div class="pi-hotline-name">505-GET-FREE</div><div class="pi-hotline-num">(505) 438-3733</div><div class="pi-hotline-sub">Diné Bizaad · 24/7 · Anonymous · Confidential</div></div><div class="pi-or">— or —</div><div class="pi-national"><div class="pi-national-label">National Hotline — Toll Free</div><div class="pi-national-num">1-888-373-7888</div></div><div class="pi-text-option">Text <strong>"HELP"</strong> or <strong>"INFO"</strong> to <strong>BEFREE (233733)</strong></div><div class="pi-anon">YOU MAY REMAIN ANONYMOUS.<br>YOUR CALL OR TEXT IS CONFIDENTIAL.</div></div>
-            <div class="pi-footer">dws.state.nm.us · New Mexico Department of Workforce Solutions</div>
-          </div></div>
+          <div class="poster-preview">
+            <img src="images/poster-nav-1.png" alt="Navajo-language human trafficking notice poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
           <h3>Diné Bizaad</h3><span class="meta">Official DWS Poster · Navajo</span>
           <p>Navajo-language version. Required where 10%+ of workers or patrons speak Diné Bizaad.</p>
-          <a href="https://www.dws.state.nm.us/Portals/0/DM/Business/Human_Trafficking_Poster_Navajo.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 22px;font-size:11px;">Download PDF <span class="arrow">→</span></a>
+          <a href="images/Human_Trafficking_Poster_Navajo.pdf" download class="btn btn-primary" style="padding:12px 22px;font-size:11px;">Download PDF <span class="arrow">→</span></a>
         </div>
         <!-- MANDARIN -->
-        <div class="download-card mandarin">
-          <div class="poster-preview"><div class="poster-inner">
-            <div class="pi-header"><div class="pi-state">新墨西哥州 · State of New Mexico</div><div class="pi-dept">505 GET FREE Human Trafficking Hotline</div></div>
-            <div class="pi-notice-band"><div class="pi-notice-label">官方强制张贴通知 · Official Required Posting</div><div class="pi-notice-title-zh">人口贩卖通知</div><div class="pi-notice-sub">Notice on Human Trafficking · 普通话</div></div>
-            <div class="pi-body"><div class="pi-crime">在新墨西哥州及联邦法律下，强迫他人劳动或提供服务属于犯罪行为。</div><div class="pi-if">如果您或您认识的人是此类犯罪的受害者，请联系以下机构：</div><div class="pi-hotline-box"><div class="pi-hotline-in">在新墨西哥州 · 拨打或发送短信</div><div class="pi-hotline-name">505-GET-FREE</div><div class="pi-hotline-num">(505) 438-3733</div><div class="pi-hotline-sub">电话 · 短信 · 24/7 · 匿名 · 保密</div></div><div class="pi-or">— 或 —</div><div class="pi-national"><div class="pi-national-label">全国人口贩卖资源中心免费热线</div><div class="pi-national-num">1-888-373-7888</div></div><div class="pi-text-option">发送短信 <strong>"HELP"（求助）</strong> 或 <strong>"INFO"</strong> 至 <strong>BEFREE (233733)</strong></div><div class="pi-anon">您的来电和短信可保持匿名，且完全保密。</div></div>
-            <div class="pi-footer">505 GET FREE · 505getfree.org · NMSA § 30-52-2.1</div>
-          </div></div>
+        <div class="download-card">
+          <div class="poster-preview">
+            <img src="images/poster-zh-1.png" alt="Mandarin Chinese human trafficking notice poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
           <h3>普通话</h3><span class="meta">505 GET FREE · Mandarin Chinese</span>
           <p>Mandarin translation by 505 GET FREE. Post where workers or patrons speak Mandarin.</p>
-          <a href="Human_Trafficking_Poster_Mandarin.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 22px;font-size:11px;">下载 Download PDF <span class="arrow">→</span></a>
+          <a href="images/Human_Trafficking_Poster_Mandarin.pdf" download class="btn btn-primary" style="padding:12px 22px;font-size:11px;">下载 Download PDF <span class="arrow">→</span></a>
         </div>
       </div>
       <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--ink-muted);">Posters are provided free of charge by the <a href="https://www.dws.state.nm.us/en-us/State-and-Federal-Posters" target="_blank" rel="noopener" style="color:var(--navy);border-bottom:1px solid rgba(29,42,138,.3);">New Mexico Department of Workforce Solutions</a>. You should never have to pay for this poster.</p>
@@ -318,9 +307,7 @@
     gsap.from('.post-item',{scrollTrigger:{trigger:'.post-grid',start:'top 78%'},opacity:0,y:30,duration:0.6,stagger:0.1,ease:'power3.out'});
     gsap.from('.faq-item',{scrollTrigger:{trigger:'.faq-list',start:'top 78%'},opacity:0,y:20,duration:0.55,stagger:0.07,ease:'power2.out'});
     gsap.from('.closing-content',{scrollTrigger:{trigger:'.cta-band',start:'top 72%'},opacity:0,y:45,duration:1.0,ease:'power3.out'});
-    // Scale poster previews
-    function scalePosterPreviews(){document.querySelectorAll('.poster-preview').forEach(function(preview){var inner=preview.querySelector('.poster-inner');if(!inner)return;var scale=preview.clientWidth/320;inner.style.transform='scale('+scale+')';inner.style.height=(preview.clientHeight/scale)+'px'})}
-    document.addEventListener('DOMContentLoaded',scalePosterPreviews);window.addEventListener('resize',scalePosterPreviews);setTimeout(scalePosterPreviews,600);
+
   </script>
 </body>
 </html>
