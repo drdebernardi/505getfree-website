@@ -84,7 +84,7 @@
     <div class="footer-inner">
       <div>
         <img class="footer-logo" src="images/logo-main.png" alt="505 Get Free">
-        <p class="footer-tagline">New Mexico's Human Trafficking Resource Hotline — quietly connecting survivors and communities with help since 2012.</p>
+        <p class="footer-tagline">New Mexico's Human Trafficking Resource Hotline — confidentially connecting survivors and communities with help since 2012.</p>
         <a href="tel:+15054383733" class="footer-hotline">(505) 438-3733</a>
         <span class="footer-hotline-label">Call or Text · 24 / 7 · Confidential</span>
       </div>

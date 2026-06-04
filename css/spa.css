@@ -609,8 +609,8 @@ footer{
   font-weight: 500;
   color: #fff;
   letter-spacing: 0.04em;
-  background: rgba(178,72,64,.25);
-  border: 1px solid rgba(178,72,64,.5);
+  background: #B24840;
+  border: 1px solid #B24840;
   border-radius: 100px;
   padding: 8px 16px;
   display: inline-flex;
