@@ -122,26 +122,14 @@
     <div class="footer-bottom">
       <p>© 2026 505 GET FREE · <a href="mailto:lsanchez@thelifelink.org">lsanchez@thelifelink.org</a></p>
       <p class="footer-danger-note"><span class="footer-danger-icon">⚠</span> If you are in immediate danger, call <a href="tel:911">911</a>.</p>
+      <button class="footer-exit-btn" onclick="exitSite()">EXIT<br>SITE</button>
     </div>
   </footer>`;
 
-  // ── Quick exit (nav button + Escape×2)
   window.exitSite = function(){
-    window.history.replaceState(null, '', location.href);
     try { window.location.replace('https://weather.com'); }
     catch(e){ window.location.href = 'https://weather.com'; }
   };
-
-  (function(){
-    var _esc = 0, _t;
-    document.addEventListener('keydown', function(e){
-      if (e.key !== 'Escape') return;
-      _esc++;
-      clearTimeout(_t);
-      if (_esc >= 2) { _esc = 0; window.exitSite(); return; }
-      _t = setTimeout(function(){ _esc = 0; }, 2000);
-    });
-  })();
 
   function init(){
     const top = document.getElementById('chrome-top');

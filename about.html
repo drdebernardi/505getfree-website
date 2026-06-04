@@ -949,6 +949,33 @@
     }
     .footer-bottom p { font-size: 12px; letter-spacing: 0.04em; }
     .footer-bottom a { color: var(--navy); }
+    .footer-exit-btn {
+      background: var(--red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1.15;
+      width: 58px; height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(29% 0%, 71% 0%, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0% 71%, 0% 29%);
+      position: relative;
+      border: none;
+      cursor: pointer;
+      transition: filter .2s, transform .3s var(--ease);
+      flex-shrink: 0;
+    }
+    .footer-exit-btn::before {
+      content: '';
+      position: absolute; inset: 5px;
+      border: 1px solid rgba(255,255,255,.75);
+      clip-path: polygon(29% 0%, 71% 0%, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0% 71%, 0% 29%);
+      pointer-events: none;
+    }
+    .footer-exit-btn:hover { filter: brightness(.88); transform: rotate(-6deg); }
     .footer-danger-note {
       font-size: 13px;
       font-weight: 500;
@@ -1404,26 +1431,14 @@
     <div class="footer-bottom">
       <p>© 2026 505 GET FREE · <a href="mailto:lsanchez@thelifelink.org">lsanchez@thelifelink.org</a></p>
       <p class="footer-danger-note"><span>⚠</span> If you are in immediate danger, call <a href="tel:911">911</a>.</p>
+      <button class="footer-exit-btn" onclick="exitSite()">EXIT<br>SITE</button>
     </div>
   </footer>
 
   <script>
-    // ── Quick exit (nav button + Escape×2)
+    // ── Quick exit
     function exitSite() {
-      window.history.replaceState(null, '', location.href);
       try { window.location.replace('https://weather.com'); }
-      catch(e) { window.location.href = 'https://weather.com'; }
-    }
-    (function(){
-      var _esc = 0, _t;
-      document.addEventListener('keydown', function(e){
-        if (e.key !== 'Escape') return;
-        _esc++;
-        clearTimeout(_t);
-        if (_esc >= 2) { _esc = 0; exitSite(); return; }
-        _t = setTimeout(function(){ _esc = 0; }, 2000);
-      });
-    })();
       catch(e) { window.location.href = 'https://weather.com'; }
     }
 
