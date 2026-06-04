@@ -747,10 +747,13 @@
     ────────────────────────────────────────────────────────── */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 32px;
       margin-top: 64px;
     }
+    .team-grid .team-card { grid-column: span 2; }
+    .team-grid .team-card:nth-child(4) { grid-column: 2 / span 2; }
+    .team-grid .team-card:nth-child(5) { grid-column: 4 / span 2; }
     .team-card {
       background: var(--paper);
       border: 1px solid rgba(29,42,138,0.08);
