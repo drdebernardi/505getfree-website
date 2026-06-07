@@ -298,7 +298,8 @@
   </footer>
   <script>
     function exitSite(){try{history.replaceState(null,'','/');window.location.replace('https://weather.com')}catch(e){window.location.href='https://weather.com'}}
-    window.addEventListener('pageshow',function(e){if(e.persisted)exitSite();});
+    window.addEventListener('pagehide',function(){document.body.style.visibility='hidden';});
+    window.addEventListener('pageshow',function(e){if(e.persisted)exitSite();else document.body.style.visibility='visible';});
     (function(){var t=0;document.addEventListener('keydown',function(e){if(e.key==='Escape'){var n=Date.now();if(n-t<1500)exitSite();t=n;}});})();
     const ham=document.querySelector('.hamburger'),mnav=document.querySelector('.mobile-nav');if(ham&&mnav){ham.addEventListener('click',()=>{ham.classList.toggle('open');mnav.classList.toggle('open')})}
     gsap.registerPlugin(ScrollTrigger);
