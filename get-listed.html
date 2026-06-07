@@ -263,7 +263,7 @@
     gsap.from('.closing-content',{scrollTrigger:{trigger:'.cta-band',start:'top 72%'},opacity:0,y:45,duration:1.0,ease:'power3.out'});
 
     // Listing form submission
-    var LISTING_URL='https://script.google.com/a/macros/thelifelink.org/s/AKfycbwfoQTJ9d2rUtqNf73it6GM1QY0GOjDHTion2xoeuClpswBRWWvZMuHX0HjPRJbfWH_/exec';
+    var LISTING_URL='https://script.google.com/macros/s/AKfycbwxNB8MpRDHH5vlTeBZB1S1AOOTNAc03uXFsTIsOO3lbhxI66Hu2_GqNop8l21nTmI/exec';
     var listingForm=document.getElementById('listing-form'),listingSuccess=document.getElementById('listing-success');
     if(listingForm){listingForm.addEventListener('submit',function(e){e.preventDefault();var btn=listingForm.querySelector('[type="submit"]');btn.textContent='Sending…';btn.disabled=true;
       var fd=new FormData(listingForm),data={};
