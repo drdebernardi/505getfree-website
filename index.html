@@ -1670,6 +1670,7 @@
       catch(e) { window.location.href = 'https://weather.com'; }
     }
     window.addEventListener('pageshow', function(e) { if (e.persisted) exitSite(); });
+    (function(){ var n=(performance.getEntriesByType('navigation')[0]||{}).type; if(n==='back_forward') exitSite(); })();
     (function(){var t=0;document.addEventListener('keydown',function(e){if(e.key==='Escape'){var n=Date.now();if(n-t<1500)exitSite();t=n;}});})();
 
     // ── Mobile nav toggle
