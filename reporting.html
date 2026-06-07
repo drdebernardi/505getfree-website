@@ -464,8 +464,16 @@
       });
     });
     // Form submission
+    var REFERRAL_URL='https://script.google.com/a/macros/thelifelink.org/s/AKfycbwt3lVwjv_RvhnYrR_NfJYmEaRnBUQ3caiQr39w7x_ypMlnXaw_2Ota33cgahBsl72hPA/exec';
     var form=document.getElementById('victim-contact-form'),success=document.getElementById('form-success');
-    if(form){form.addEventListener('submit',function(e){e.preventDefault();var btn=form.querySelector('[type="submit"]');btn.textContent='Sending…';btn.disabled=true;fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}}).then(function(res){if(res.ok){form.style.display='none';success.classList.add('visible');success.scrollIntoView({behavior:'smooth',block:'center'})}else{btn.textContent='Error — try again';btn.disabled=false}}).catch(function(){btn.textContent='Error — try again';btn.disabled=false})})}
+    if(form){form.addEventListener('submit',function(e){e.preventDefault();var btn=form.querySelector('[type="submit"]');btn.textContent='Sending…';btn.disabled=true;
+      var fd=new FormData(form),data={};
+      fd.forEach(function(v,k){if(k==='services[]'){if(!data[k])data[k]=[];data[k].push(v);}else{data[k]=v;}});
+      fetch(REFERRAL_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'}})
+        .then(function(res){return res.json();})
+        .then(function(json){if(json.success){form.style.display='none';success.classList.add('visible');success.scrollIntoView({behavior:'smooth',block:'center'})}else{btn.textContent='Error — try again';btn.disabled=false;}})
+        .catch(function(){btn.textContent='Error — try again';btn.disabled=false;});
+    })}
   </script>
 </body>
 </html>

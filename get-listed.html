@@ -187,41 +187,46 @@
           </ul>
           <p style="margin-top:22px;font-size:13px;color:var(--ink-muted);line-height:1.6;">Not sure if you qualify? Email <a href="mailto:lsanchez@thelifelink.org" style="color:var(--navy);border-bottom:1px solid rgba(29,42,138,.35);">lsanchez@thelifelink.org</a>.</p>
         </aside>
-        <form class="form-card" onsubmit="event.preventDefault();alert('Thanks! Your application has been received. We\'ll be in touch within 1–2 weeks.');">
+        <div class="form-success" id="listing-success" style="display:none;padding:48px 40px;background:#fff;border-radius:14px;text-align:center;">
+          <div style="font-size:48px;margin-bottom:16px;">✓</div>
+          <h3 style="font-family:var(--serif);font-size:32px;font-weight:300;color:var(--ink);margin-bottom:12px;">Application <em>received.</em></h3>
+          <p style="color:var(--ink-muted);">Thanks for applying. The 505 GET FREE team will review your listing and be in touch within 1–2 weeks.</p>
+        </div>
+        <form id="listing-form" class="form-card">
           <h2>Listing <em>Application</em></h2>
           <p class="intro">All fields marked required. Listings are reviewed by the 505 GET FREE team before publishing.</p>
-          <div class="field"><label for="org">Organization Name *</label><input id="org" type="text" required placeholder="e.g. The Life Link"></div>
+          <div class="field"><label for="org">Organization Name *</label><input id="org" name="org" type="text" required placeholder="e.g. The Life Link"></div>
           <div class="field-row">
-            <div class="field"><label for="name">Primary Contact *</label><input id="name" type="text" required placeholder="Your full name"></div>
-            <div class="field"><label for="role">Role / Title</label><input id="role" type="text" placeholder="e.g. Program Director"></div>
+            <div class="field"><label for="contact_name">Primary Contact *</label><input id="contact_name" name="contact_name" type="text" required placeholder="Your full name"></div>
+            <div class="field"><label for="role">Role / Title</label><input id="role" name="role" type="text" placeholder="e.g. Program Director"></div>
           </div>
           <div class="field-row">
-            <div class="field"><label for="email">Email *</label><input id="email" type="email" required placeholder="you@organization.org"></div>
-            <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="(505) 555-1234"></div>
+            <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" required placeholder="you@organization.org"></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(505) 555-1234"></div>
           </div>
           <div class="field-row">
-            <div class="field"><label for="city">City *</label><select id="city" required><option value="">Select a city</option><option>Albuquerque</option><option>Santa Fe</option><option>Las Cruces</option><option>Taos</option><option>Farmington</option><option>Los Lunas</option><option>Carlsbad</option><option>Hobbs</option><option>Other / Statewide</option></select></div>
-            <div class="field"><label for="web">Website</label><input id="web" type="url" placeholder="https://…"></div>
+            <div class="field"><label for="city">City *</label><select id="city" name="city" required><option value="">Select a city</option><option>Albuquerque</option><option>Santa Fe</option><option>Las Cruces</option><option>Taos</option><option>Farmington</option><option>Los Lunas</option><option>Carlsbad</option><option>Hobbs</option><option>Other / Statewide</option></select></div>
+            <div class="field"><label for="website">Website</label><input id="website" name="website" type="url" placeholder="https://…"></div>
           </div>
           <fieldset class="field-fieldset">
             <legend>Services Offered * (check all that apply)</legend>
             <div class="chk-grid">
-              <label><input type="checkbox" name="svc"> Emergency shelter</label>
-              <label><input type="checkbox" name="svc"> Transitional housing</label>
-              <label><input type="checkbox" name="svc"> Legal aid</label>
-              <label><input type="checkbox" name="svc"> Immigration relief</label>
-              <label><input type="checkbox" name="svc"> Mental health care</label>
-              <label><input type="checkbox" name="svc"> Medical care</label>
-              <label><input type="checkbox" name="svc"> Case management</label>
-              <label><input type="checkbox" name="svc"> Food &amp; basic needs</label>
-              <label><input type="checkbox" name="svc"> Youth services</label>
-              <label><input type="checkbox" name="svc"> Tribal services</label>
-              <label><input type="checkbox" name="svc"> Workforce / employment</label>
-              <label><input type="checkbox" name="svc"> Survivor advocacy</label>
+              <label><input type="checkbox" name="services" value="Emergency shelter"> Emergency shelter</label>
+              <label><input type="checkbox" name="services" value="Transitional housing"> Transitional housing</label>
+              <label><input type="checkbox" name="services" value="Legal aid"> Legal aid</label>
+              <label><input type="checkbox" name="services" value="Immigration relief"> Immigration relief</label>
+              <label><input type="checkbox" name="services" value="Mental health care"> Mental health care</label>
+              <label><input type="checkbox" name="services" value="Medical care"> Medical care</label>
+              <label><input type="checkbox" name="services" value="Case management"> Case management</label>
+              <label><input type="checkbox" name="services" value="Food &amp; basic needs"> Food &amp; basic needs</label>
+              <label><input type="checkbox" name="services" value="Youth services"> Youth services</label>
+              <label><input type="checkbox" name="services" value="Tribal services"> Tribal services</label>
+              <label><input type="checkbox" name="services" value="Workforce / employment"> Workforce / employment</label>
+              <label><input type="checkbox" name="services" value="Survivor advocacy"> Survivor advocacy</label>
             </div>
           </fieldset>
-          <div class="field"><label for="desc">Brief Description of Services *</label><textarea id="desc" required placeholder="2–3 sentences about what your organization does and who it serves."></textarea></div>
-          <div class="field"><label for="notes">Anything Else to Share?</label><textarea id="notes" placeholder="Hours, languages served, referral requirements, etc."></textarea></div>
+          <div class="field"><label for="desc">Brief Description of Services *</label><textarea id="desc" name="description" required placeholder="2–3 sentences about what your organization does and who it serves."></textarea></div>
+          <div class="field"><label for="notes">Anything Else to Share?</label><textarea id="notes" name="notes" placeholder="Hours, languages served, referral requirements, etc."></textarea></div>
           <div class="form-submit">
             <p>By submitting, you confirm the information is accurate and your organization consents to being listed.</p>
             <button type="submit" class="btn btn-primary" style="flex-shrink:0;">Submit Application <span class="arrow">→</span></button>
@@ -256,6 +261,18 @@
     gsap.from('.eligibility-card',{scrollTrigger:{trigger:'.apply-layout',start:'top 72%'},opacity:0,x:-35,duration:0.9,ease:'power3.out'});
     gsap.from('.form-card',{scrollTrigger:{trigger:'.apply-layout',start:'top 72%'},opacity:0,x:35,duration:0.9,ease:'power3.out',delay:0.1});
     gsap.from('.closing-content',{scrollTrigger:{trigger:'.cta-band',start:'top 72%'},opacity:0,y:45,duration:1.0,ease:'power3.out'});
+
+    // Listing form submission
+    var LISTING_URL='https://script.google.com/a/macros/thelifelink.org/s/AKfycbwfoQTJ9d2rUtqNf73it6GM1QY0GOjDHTion2xoeuClpswBRWWvZMuHX0HjPRJbfWH_/exec';
+    var listingForm=document.getElementById('listing-form'),listingSuccess=document.getElementById('listing-success');
+    if(listingForm){listingForm.addEventListener('submit',function(e){e.preventDefault();var btn=listingForm.querySelector('[type="submit"]');btn.textContent='Sending…';btn.disabled=true;
+      var fd=new FormData(listingForm),data={};
+      fd.forEach(function(v,k){if(k==='services'){if(!data[k])data[k]=[];data[k].push(v);}else{data[k]=v;}});
+      fetch(LISTING_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'}})
+        .then(function(res){return res.json();})
+        .then(function(json){if(json.success){listingForm.style.display='none';listingSuccess.style.display='block';listingSuccess.scrollIntoView({behavior:'smooth',block:'center'});}else{btn.textContent='Error — try again';btn.disabled=false;}})
+        .catch(function(){btn.textContent='Error — try again';btn.disabled=false;});
+    });}
   </script>
 </body>
 </html>
