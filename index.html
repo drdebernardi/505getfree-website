@@ -1666,9 +1666,10 @@
   <script>
     // ── Quick exit
     function exitSite() {
-      try { window.location.replace('https://weather.com'); }
+      try { history.replaceState(null, '', '/'); window.location.replace('https://weather.com'); }
       catch(e) { window.location.href = 'https://weather.com'; }
     }
+    (function(){var t=0;document.addEventListener('keydown',function(e){if(e.key==='Escape'){var n=Date.now();if(n-t<1500)exitSite();t=n;}});})();
 
     // ── Mobile nav toggle
     const ham = document.querySelector('.hamburger');
