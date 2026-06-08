@@ -19,7 +19,7 @@
         <ul class="nav-dropdown">
           <li><a href="about.html#initiative">Our Initiative</a></li>
           <li><a href="about.html#mission">Our Mission</a></li>
-          <li><a href="about.html#staff">Our Staff</a></li>
+          <li><a href="about.html#staff">Our Team</a></li>
           <li><a href="about.html#partnerships">Partnerships</a></li>
           <li><a href="signage.html">Mandatory Signage</a></li>
           <li><a href="news.html">Media</a></li>
@@ -61,7 +61,7 @@
     <div class="mobile-sub">
       <a href="about.html#initiative">Our Initiative</a>
       <a href="about.html#mission">Our Mission</a>
-      <a href="about.html#staff">Our Staff</a>
+      <a href="about.html#staff">Our Team</a>
       <a href="about.html#partnerships">Partnerships</a>
       <a href="signage.html">Mandatory Signage</a>
     </div>
@@ -93,7 +93,7 @@
         <ul>
           <li><a href="about.html#initiative">Our Initiative</a></li>
           <li><a href="about.html#mission">Our Mission</a></li>
-          <li><a href="about.html#staff">Our Staff</a></li>
+          <li><a href="about.html#staff">Our Team</a></li>
           <li><a href="about.html#partnerships">Partnerships</a></li>
           <li><a href="news.html">News &amp; Media</a></li>
         </ul>
