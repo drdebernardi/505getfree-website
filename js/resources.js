@@ -17,8 +17,8 @@
 /* ─── Airtable configuration ─────────────────────────────────── */
 // AIRTABLE_TOKEN is defined by js/airtable-config.js, which is loaded
 // before this file. Locally: create js/airtable-config.js from the
-// template in that file. On Netlify: set the AIRTABLE_TOKEN env variable
-// and the netlify.toml build command generates the file automatically.
+// template in that file. On Vercel: set the AIRTABLE_TOKEN env variable
+// and the build command generates the file automatically.
 const AIRTABLE_BASE            = 'appQ20I7mwqYDEiMo';
 const AIRTABLE_RESOURCES_TABLE = 'tblebhPFf3Yl34TcO';
 

@@ -1,0 +1,68 @@
+/* ============================================================
+   505 GET FREE — Redraft · SAMPLE resource fallback
+   Used ONLY when Airtable is unreachable (e.g. design preview
+   without a token) so the page stays reviewable. Entries are
+   fictional. Shapes match js/resources.js RESOURCES objects.
+============================================================ */
+window.applySampleResources = function(){
+  var S = [
+    { name:'Desert Haven Emergency Shelter', city:'albuquerque', categories:['shelter','domestic-violence'],
+      description:'Emergency beds for adults and families leaving unsafe situations, with trauma-informed staff on site.',
+      phone:'(505) 555-0117', address:'Albuquerque, NM', website:'', lat:35.0911, lng:-106.6298 },
+    { name:'New Dawn Crisis Line', city:'albuquerque', categories:['hotline','advocacy'],
+      description:'Phone and text crisis support with warm handoffs to local services across Bernalillo County.',
+      phone:'(505) 555-0190', address:'Albuquerque, NM', website:'', lat:35.0782, lng:-106.6519 },
+    { name:'Rio Grande Legal Aid', city:'albuquerque', categories:['legal','immigration'],
+      description:'Free civil legal services — protective orders, records relief, immigration status, and housing disputes.',
+      phone:'(505) 555-0152', address:'Albuquerque, NM', website:'', lat:35.0875, lng:-106.6650 },
+    { name:'Sandia Behavioral Health Collective', city:'albuquerque', categories:['mental-health','substance-use'],
+      description:'Counseling, psychiatric care, and substance-use treatment on a sliding scale; walk-ins welcome.',
+      phone:'(505) 555-0136', address:'Albuquerque, NM', website:'', lat:35.1043, lng:-106.6201 },
+    { name:'First Light Medical Clinic', city:'albuquerque', categories:['medical'],
+      description:'Low-cost urgent and primary care, no insurance or ID required for a first visit.',
+      phone:'(505) 555-0124', address:'Albuquerque, NM', website:'', lat:35.0698, lng:-106.6402 },
+    { name:'Turquoise Trail Youth Services', city:'albuquerque', categories:['children','education'],
+      description:'Drop-in center, schooling support, and case management for youth and teens.',
+      phone:'(505) 555-0171', address:'Albuquerque, NM', website:'', lat:35.0959, lng:-106.6705 },
+    { name:'Mesa Employment Project', city:'albuquerque', categories:['employment','financial'],
+      description:'Job placement, work clothing, and emergency financial assistance for people rebuilding.',
+      phone:'(505) 555-0163', address:'Albuquerque, NM', website:'', lat:35.0810, lng:-106.6840 },
+    { name:'Casa Esperanza Family Shelter', city:'santa-fe', categories:['shelter','children'],
+      description:'Family shelter with private rooms; accepts parents with children of any age, day or night.',
+      phone:'(505) 555-0108', address:'Santa Fe, NM', website:'', lat:35.6912, lng:-105.9501 },
+    { name:'Santa Fe Survivor Advocacy Center', city:'santa-fe', categories:['advocacy','sexual-assault'],
+      description:'Accompaniment, safety planning, and advocacy for survivors of violence and exploitation.',
+      phone:'(505) 555-0147', address:'Santa Fe, NM', website:'', lat:35.6824, lng:-105.9293 },
+    { name:'Piñon Recovery House', city:'santa-fe', categories:['substance-use','housing'],
+      description:'Residential and outpatient recovery programs with transitional housing support.',
+      phone:'(505) 555-0129', address:'Santa Fe, NM', website:'', lat:35.6753, lng:-105.9462 },
+    { name:'Mesilla Valley Safe House', city:'las-cruces', categories:['shelter','domestic-violence'],
+      description:'Confidential-location shelter for survivors of domestic violence and trafficking.',
+      phone:'(575) 555-0102', address:'Las Cruces, NM', website:'', lat:32.3265, lng:-106.7790 },
+    { name:'Border Hope Immigration Services', city:'las-cruces', categories:['immigration','legal'],
+      description:'Immigration legal services including T-visa and U-visa support, in English and Spanish.',
+      phone:'(575) 555-0158', address:'Las Cruces, NM', website:'', lat:32.3127, lng:-106.7510 },
+    { name:'Crossroads Counseling Cooperative', city:'las-cruces', categories:['mental-health'],
+      description:'Evening-hours counseling collective; trauma specialists, no referral needed.',
+      phone:'(575) 555-0184', address:'Las Cruces, NM', website:'', lat:32.3340, lng:-106.7689 },
+    { name:'Sangre de Cristo Crisis Shelter', city:'taos', categories:['shelter'],
+      description:'Small crisis shelter serving Taos and surrounding mountain communities.',
+      phone:'(575) 555-0111', address:'Taos, NM', website:'', lat:36.4031, lng:-105.5814 },
+    { name:'High Road Family Resource Center', city:'taos', categories:['food','financial','children'],
+      description:'Food pantry, utility assistance, and children\u2019s programs under one roof.',
+      phone:'(575) 555-0166', address:'Taos, NM', website:'', lat:36.4129, lng:-105.5660 },
+    { name:'Four Corners Advocate Network', city:'farmington', categories:['advocacy','hotline'],
+      description:'Around-the-clock advocate dispatch covering San Juan County and the Navajo Nation border towns.',
+      phone:'(505) 555-0195', address:'Farmington, NM', website:'', lat:36.7332, lng:-108.2186 },
+    { name:'San Juan Health Outreach', city:'farmington', categories:['medical','disability'],
+      description:'Mobile and clinic-based medical care, with disability services coordination.',
+      phone:'(505) 555-0140', address:'Farmington, NM', website:'', lat:36.7219, lng:-108.1950 },
+    { name:'Llano Estacado Recovery Center', city:'hobbs', categories:['substance-use','mental-health'],
+      description:'Substance-use treatment and mental health care with extended evening hours.',
+      phone:'(575) 555-0133', address:'Hobbs, NM', website:'', lat:32.7098, lng:-103.1442 },
+    { name:'Permian Basin Family Services', city:'hobbs', categories:['children','food'],
+      description:'Children\u2019s services, food assistance, and family case management for Lea County.',
+      phone:'(575) 555-0176', address:'Hobbs, NM', website:'', lat:32.6951, lng:-103.1290 }
+  ];
+  RESOURCES = S;
+};
