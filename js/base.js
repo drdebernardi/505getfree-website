@@ -15,7 +15,7 @@
   }
 
   function apply(mins, isLive){
-    var phase = window.NM_CLOCK.phaseOf(mins);
+    var phase = window.NM_CLOCK.phaseOf(mins, window.NM_CLOCK.sunTimes);
     doc.setAttribute('data-phase', phase);
     doc.setAttribute('data-dark', phase === 'night' ? '1' : '0');
     // topbar clock, if present
