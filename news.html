@@ -316,6 +316,7 @@
           <a href="https://searchlightnm.org/chaos-and-cannabis/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">Searchlight NM</span><span class="media-title">Chaos and Cannabis</span><span class="media-year"></span><span class="media-arrow">→</span></a>
           <a href="https://searchlightnm.org/fined-and-stripped-of-his-marijuana-license-dineh-benally-keeps-on-growing/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">Searchlight NM</span><span class="media-title">Fined and Stripped of His Marijuana License, Dineh Benally Keeps On Growing</span><span class="media-year"></span><span class="media-arrow">→</span></a>
           <a href="https://searchlightnm.org/a-green-light-for-dineh-benally/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">Searchlight NM</span><span class="media-title">A Green Light for Dineh Benally</span><span class="media-year"></span><span class="media-arrow">→</span></a>
+          <a href="https://www.hcn.org/issues/58-7/the-chinese-immigrants-trafficked-on-new-mexicos-weed-farms/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">High Country News</span><span class="media-title">The Chinese Immigrants Trafficked on New Mexico's Weed Farms</span><span class="media-year">2026</span><span class="media-arrow">→</span></a>
           <a href="https://www.hcn.org/issues/53-5/south-marijuana-investigation-illegal-cannabis-operation-looks-for-roots-in-indigenous-communities/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">High Country News</span><span class="media-title">Illegal Cannabis Operation Looks for Roots in Indigenous Communities</span><span class="media-year"></span><span class="media-arrow">→</span></a>
           <a href="https://projectcbd.org/policy/showdown-at-navajo-nation/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">Project CBD</span><span class="media-title">Showdown at Navajo Nation</span><span class="media-year"></span><span class="media-arrow">→</span></a>
           <a href="https://ganjapreneur.com/fbi-and-navajo-police-raid-hemp-farm-on-tribal-land/" target="_blank" rel="noopener" class="media-row"><span class="outlet-badge">Ganjapreneur</span><span class="media-title">FBI and Navajo Police Raid Hemp Farm on Tribal Land</span><span class="media-year"></span><span class="media-arrow">→</span></a>
@@ -401,6 +402,7 @@
         <h2 class="ftf-modal-headline" id="ftf-modal-headline"></h2>
         <div class="ftf-modal-divider"></div>
         <p class="ftf-modal-body-text" id="ftf-modal-body-text"></p>
+        <a class="ftf-hero-read" id="ftf-modal-source" href="#" target="_blank" rel="noopener" style="display:none; margin-top:20px;">Read full story &rarr;</a>
       </div>
     </div>
   </div>
@@ -516,6 +518,7 @@
           '&fields[]=' + encodeURIComponent('Body/Content') +
           '&fields[]=Photo' +
           '&fields[]=' + encodeURIComponent('Published Status') +
+          '&fields[]=' + encodeURIComponent('News Source/Link') +
           '&filterByFormula=' + encodeURIComponent('{Published Status}=1') +
           '&sort[0][field]=Date&sort[0][direction]=desc' +
           '&pageSize=100';
@@ -530,10 +533,11 @@
             const f = rec.fields;
             const photos = f['Photo'];
             return {
-              date:     fmtDate(f['Date']),
-              headline: f['Headline'] || '',
-              body:     f['Body/Content'] || '',
-              imageUrl: (photos && photos[0]) ? photos[0].url : ''
+              date:      fmtDate(f['Date']),
+              headline:  f['Headline'] || '',
+              body:      f['Body/Content'] || '',
+              imageUrl:  (photos && photos[0]) ? photos[0].url : '',
+              sourceUrl: f['News Source/Link'] || ''
             };
           });
         }
@@ -595,6 +599,7 @@
       const modalTop   = document.getElementById('ftf-modal-top');
       const modalClose = document.getElementById('ftf-modal-close');
       const modalBack  = document.getElementById('ftf-modal-backdrop');
+      const modalSource = document.getElementById('ftf-modal-source');
 
       function openModal(rec) {
         if (rec.imageUrl) {
@@ -605,6 +610,12 @@
         modalDate.textContent = rec.date || '';
         modalHead.textContent = rec.headline || '';
         modalBody.textContent = rec.body || '';
+        if (rec.sourceUrl) {
+          modalSource.href = rec.sourceUrl;
+          modalSource.style.display = 'inline-block';
+        } else {
+          modalSource.style.display = 'none';
+        }
         modal.hidden = false;
         document.body.style.overflow = 'hidden';
         const panel = document.getElementById('ftf-modal-panel');
