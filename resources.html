@@ -569,14 +569,14 @@
     }
 
     /* ── map (keeps the hours too: light tiles by day, dark at night) ── */
-    const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-    const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    const TILE_LIGHT = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png';
+    const TILE_DARK  = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png';
     function tileUrl(){ return document.documentElement.getAttribute('data-dark') === '1' ? TILE_DARK : TILE_LIGHT; }
     function ensureMap(){
       if (map){ setTimeout(() => map.invalidateSize(), 80); return; }
       const center = CITY_CENTERS['all'];
       map = L.map('map', { center:[center.lat, center.lng], zoom:center.zoom, zoomControl:true });
-      tiles = L.tileLayer(tileUrl(), { attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19 }).addTo(map);
+      tiles = L.tileLayer(tileUrl(), { attribution:'&copy; <a href="https://stadiamaps.com/" target="_blank" rel="noopener">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>', maxZoom:20 }).addTo(map);
       setTimeout(() => map.invalidateSize(), 80);
     }
     document.addEventListener('vigil:phase', function(){

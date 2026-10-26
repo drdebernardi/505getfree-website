@@ -378,12 +378,14 @@
   /* hour preview — a designer's sundial, tucked away */
   .dial{
     position:absolute; left:34px; bottom:28px; z-index:20;
-    display:flex; align-items:center; gap:14px;
+    display:none; /* hidden from the public — add ?dial to the URL to reveal */
+    align-items:center; gap:14px;
     background:color-mix(in oklab, var(--pg-bg2) 72%, transparent);
     backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
     border:1px solid var(--pg-line); border-radius:100px; padding:10px 18px;
     transition:background-color var(--fade) ease, border-color var(--fade) ease;
   }
+  html.show-dial .dial{ display:flex; }
   .dial .lbl{ font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--pg-muted); white-space:nowrap; transition:color var(--fade) ease; }
   .dial input[type="range"]{ -webkit-appearance:none; appearance:none; width:150px; height:2px; border-radius:2px; background:var(--pg-line); outline:none; cursor:pointer; }
   .dial input[type="range"]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:14px; height:14px; border-radius:50%; background:var(--pg-accent); border:2px solid var(--pg-bg2); box-shadow:0 1px 6px rgba(0,0,0,.25); }
@@ -884,6 +886,9 @@
       var dial = document.getElementById('dial');
       var scrub = document.getElementById('hour-scrub');
       var liveBtn = document.getElementById('live-btn');
+
+      // Staff-only: visit /?dial to reveal the hour preview bar
+      try{ if (/[?&]dial(=|&|$)/.test(location.search)) document.documentElement.classList.add('show-dial'); }catch(e){}
 
       // Daytime keeps the live site's exact words; other hours keep watch.
       var COPY = {
