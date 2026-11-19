@@ -1,7 +1,7 @@
 // 505getfree.org visit counter.
 //
 // POST /api/visits  -> counts one visit (the browser sends this once per session)
-// GET  /api/visits  -> returns { visits, windowDays } for the trailing 12 months
+// GET  /api/visits  -> returns { visits }: the all-time total (starting balance + counted visits)
 //
 // Privacy: no cookies, no IP addresses, no user agents, and no identifiers are
 // stored. The database holds only one number per calendar day.
@@ -13,7 +13,9 @@ const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 
 const DAILY_KEY = 'visits:daily';
-const WINDOW_DAYS = 365;
+// Starting balance: Google Analytics sessions, Jan 1 - Nov 19, 2026 (1,620).
+// Visits counted by this function are added on top of it.
+const BASELINE = 1620;
 const MAX_HITS_PER_MINUTE = 30; // flood guard; real traffic on this site is far below this
 const ALLOWED_HOSTS = ['505getfree.org', 'www.505getfree.org'];
 const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|monitor|uptime|facebookexternalhit|curl|wget|python|axios|node-fetch|go-http|java\//i;
@@ -56,17 +58,11 @@ async function recordVisit(req) {
   await redis(['HINCRBY', DAILY_KEY, dayString(new Date()), 1]);
 }
 
-async function trailingTotal() {
-  const cutoff = dayString(new Date(Date.now() - (WINDOW_DAYS - 1) * 86400000));
+async function allTimeTotal() {
   const flat = (await redis(['HGETALL', DAILY_KEY])) || []; // [day, count, day, count, ...]
-  let total = 0;
-  const stale = [];
-  for (let i = 0; i < flat.length; i += 2) {
-    if (flat[i] >= cutoff) total += Number(flat[i + 1]) || 0;
-    else stale.push(flat[i]);
-  }
-  if (stale.length) await redis(['HDEL', DAILY_KEY].concat(stale)); // tidy days older than the window
-  return total;
+  let counted = 0;
+  for (let i = 1; i < flat.length; i += 2) counted += Number(flat[i]) || 0;
+  return BASELINE + counted;
 }
 
 module.exports = async function handler(req, res) {
@@ -84,9 +80,9 @@ module.exports = async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const visits = await trailingTotal();
+      const visits = await allTimeTotal();
       res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
-      return res.status(200).json({ visits, windowDays: WINDOW_DAYS });
+      return res.status(200).json({ visits });
     } catch (e) {
       res.setHeader('Cache-Control', 'public, s-maxage=60');
       return res.status(200).json({ visits: null });
