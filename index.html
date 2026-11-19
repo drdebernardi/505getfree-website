@@ -455,6 +455,57 @@
     .cta-band{ padding:84px 22px 100px; }
     .cta-card{ padding:64px 26px; }
   }
+
+  /* ── OPTION A · New Mexico behind the logo ── */
+  .nm-a{ position:absolute; left:50%; top:50%; height:74%; aspect-ratio:400/440; transform:translate(-50%,-50%); overflow:visible; pointer-events:none; }
+  .nm-a .fill{ fill:rgba(143,196,222,.17); transition:fill var(--fade) ease; animation:nmfade 2.4s ease .2s both; }
+  .nm-a .line{ fill:none; stroke:rgba(29,42,138,.38); stroke-width:1.5; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; animation:nmdraw 3.4s var(--ease) .3s forwards; transition:stroke var(--fade) ease; }
+  .nm-a .c{ fill:var(--pg-accent); opacity:.75; transition:fill var(--fade) ease; }
+  .nm-a .c.sf{ fill:var(--red); opacity:.95; }
+  .nm-a .pulse{ fill:none; stroke:var(--red); stroke-width:1; transform-box:fill-box; transform-origin:center; animation:nmpulse 3s ease-out infinite; }
+  html[data-dark="1"] .nm-a .fill{ fill:rgba(56,210,238,.07); }
+  html[data-dark="1"] .nm-a .line{ stroke:rgba(130,205,245,.6); filter:drop-shadow(0 0 5px rgba(56,210,238,.45)); }
+  html[data-dark="1"] .nm-a .c{ fill:#7FE3F5; filter:drop-shadow(0 0 4px rgba(56,210,238,.9)); }
+  html[data-dark="1"] .nm-a .c.sf{ fill:#fff; }
+  html[data-dark="1"] .nm-a .pulse{ stroke:#7FE3F5; }
+  @keyframes nmdraw{ to{ stroke-dashoffset:0; } }
+  @keyframes nmfade{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes nmpulse{ 0%{ transform:scale(1); opacity:.9; } 100%{ transform:scale(4.2); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .nm-a .line{ animation:none; stroke-dashoffset:0; } .nm-a .pulse{ animation:none; opacity:0; } .nm-a .fill{ animation:none; } }
+  @media (max-width:1100px){ .nm-a{ height:76%; } }
+
+  /* ── OPTION C · Find help — New Mexico map ── */
+  .loc2{ max-width:1160px; margin:0 auto; padding:0 48px; display:grid; grid-template-columns:minmax(320px,.9fr) 1.1fr; grid-template-areas:"map head" "map cards"; column-gap:72px; row-gap:40px; align-items:start; }
+  .loc2-head{ grid-area:head; align-self:end; }
+  .loc2-head h2{ font-size:clamp(40px,4.6vw,60px); margin-top:22px; line-height:1.02; letter-spacing:-0.012em; font-weight:300; }
+  .loc2-head .desc{ font-size:16px; max-width:420px; margin-top:20px; }
+  .loc2-cards{ grid-area:cards; align-self:start; }
+  .loc2-cards .loc-grid{ margin:0; padding:0; grid-template-columns:repeat(2,1fr); max-width:none; }
+  .loc2-cards .loc-cta-row{ padding:0; margin-top:28px; justify-content:flex-start; }
+  .nm-map{ grid-area:map; align-self:center; position:relative; width:100%; max-width:480px; margin:0 auto; }
+  .nm-c{ width:100%; height:auto; display:block; overflow:visible; }
+  .nm-c .fill{ fill:var(--pg-tint); stroke:none; filter:drop-shadow(0 18px 26px rgba(14,26,102,.14)); opacity:1; transition:fill var(--fade) ease; }
+  .nm-c .line{ fill:none; stroke:var(--pg-accent); stroke-opacity:.55; stroke-width:1.5; stroke-linejoin:round; transition:stroke var(--fade) ease; }
+  .nm-c .pin{ cursor:pointer; outline:none; }
+  .nm-c .pin .ring{ fill:none; stroke:var(--pg-accent); stroke-width:1; opacity:0; transform-box:fill-box; transform-origin:center; transition:opacity .3s, transform .4s var(--ease); }
+  .nm-c .pin .dot{ fill:var(--pg-accent); transition:fill var(--fade) ease, r .25s var(--ease); }
+  .nm-c .pin .lbl{ font-family:var(--sans); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; fill:var(--pg-muted); font-weight:400; transition:fill .25s ease; paint-order:stroke; stroke:var(--pg-card); stroke-width:3px; stroke-linejoin:round; }
+  .nm-c .pin.sf .dot{ fill:var(--red); }
+  .nm-c .pin:hover .ring,.nm-c .pin:focus-visible .ring,.nm-c .pin.on .ring{ opacity:.9; transform:scale(1.9); }
+  .nm-c .pin:hover .lbl,.nm-c .pin:focus-visible .lbl,.nm-c .pin.on .lbl{ fill:var(--pg-head); }
+  .nm-c .pin:hover .dot,.nm-c .pin.on .dot{ r:5; }
+  html[data-dark="1"] .nm-c .fill{ fill:#0C1240; }
+  html[data-dark="1"] .nm-c .line{ stroke:#7FE3F5; stroke-opacity:.6; filter:drop-shadow(0 0 6px rgba(56,210,238,.45)); }
+  html[data-dark="1"] .nm-c .pin .dot{ fill:#7FE3F5; filter:drop-shadow(0 0 5px rgba(56,210,238,.9)); }
+  html[data-dark="1"] .nm-c .pin.sf .dot{ fill:#fff; }
+  html[data-dark="1"] .nm-c .pin .lbl{ stroke:#0C1240; fill:#94A0C6; }
+  .loc-card.on{ transform:translateY(-4px); border-color:var(--pg-accent); box-shadow:0 26px 54px -40px var(--pg-shadow); }
+  @media (max-width:1100px){
+    .loc2{ grid-template-columns:minmax(0,1fr); grid-template-areas:"head" "map" "cards"; row-gap:44px; }
+    .loc2 > *{ min-width:0; }
+    .nm-map{ max-width:400px; }
+  }
+  @media (max-width:760px){ .loc2{ padding:0 22px; } .loc2-cards .loc-grid{ gap:12px; grid-template-columns:repeat(2,minmax(0,1fr)); } .loc2-cards .loc-card{ padding-left:18px; padding-right:14px; min-width:0; } .nm-c .pin .lbl{ font-size:12px; } }
 </style>
 </head>
 <body>
@@ -578,6 +629,7 @@
           <span class="ring"></span>
           <span class="ring r2"></span>
           <span class="ring r3"></span>
+          <svg class="nm-a" viewBox="0 0 400 440" aria-hidden="true" focusable="false"><path class="fill" d="M24.673,10.047L71.671,11.276L120.372,12.095L152.56,12.397L152.978,12.972L192.371,13.054L256.117,12.777L263.319,12.837L302.285,12.325L338.063,11.314L381.245,10L382.116,39.376L382.127,46.933L379.784,47.002L380.392,60.514L381.894,111.867L382.483,139.428L385.298,235.817L385.288,250.56L385.617,277.048L385.892,286.507L385.917,302.644L388.147,379.557L347.01,380.68L296.197,381.619L239.981,382.121L165.549,382.103L165.285,388.512L163.702,389.644L164.362,392.06L166.605,393.66L166.371,395.118L169.969,396.408L171.087,398.19L122.845,397.755L65.591,396.764L64.866,430L11.853,428.687L17.294,248.031L17.73,240.863L17.787,231.65L19.168,193.051L20.935,134.318L20.776,132.407L21.445,117.367Z"/><path class="line" pathLength="1" d="M24.673,10.047L71.671,11.276L120.372,12.095L152.56,12.397L152.978,12.972L192.371,13.054L256.117,12.777L263.319,12.837L302.285,12.325L338.063,11.314L381.245,10L382.116,39.376L382.127,46.933L379.784,47.002L380.392,60.514L381.894,111.867L382.483,139.428L385.298,235.817L385.288,250.56L385.617,277.048L385.892,286.507L385.917,302.644L388.147,379.557L347.01,380.68L296.197,381.619L239.981,382.121L165.549,382.103L165.285,388.512L163.702,389.644L164.362,392.06L166.605,393.66L166.371,395.118L169.969,396.408L171.087,398.19L122.845,397.755L65.591,396.764L64.866,430L11.853,428.687L17.294,248.031L17.73,240.863L17.787,231.65L19.168,193.051L20.935,134.318L20.776,132.407L21.445,117.367Z"/><g><circle class="c" cx="73.6" cy="31.3" r="2.4"><title>Farmington</title></circle><circle class="c" cx="229.7" cy="56.4" r="2.4"><title>Taos</title></circle><circle class="pulse" cx="208" cy="109.7" r="3.6"/><circle class="c sf" cx="208" cy="109.7" r="3.6"><title>Santa Fe</title></circle><circle class="c" cx="165" cy="154.1" r="2.4"><title>Albuquerque</title></circle><circle class="c" cx="374.5" cy="202.2" r="2.4"><title>Clovis</title></circle><circle class="c" cx="295.3" cy="278.6" r="2.4"><title>Roswell</title></circle><circle class="c" cx="314.7" cy="350.2" r="2.4"><title>Carlsbad</title></circle><circle class="c" cx="382.2" cy="327.8" r="2.4"><title>Hobbs</title></circle><circle class="c" cx="156.6" cy="358.5" r="2.4"><title>Las Cruces</title></circle></g></svg>
           <img src="images/logo-main.png" alt="505 Get Free hummingbird and key" class="hero-logo">
         </div>
       </div>
@@ -728,61 +780,17 @@
 
   <!-- ─────────────── LOCATIONS ─────────────── -->
   <section class="locations tinted" data-screen-label="Home — Locations">
-    <div class="loc-head">
-      <div>
+    <div class="loc2">
+      <div class="loc2-head">
         <span class="eyebrow reveal">Find help near you</span>
         <h2 class="reveal">Resources across<br><em>New Mexico.</em></h2>
+        <p class="desc reveal">Shelters, legal services, medical care, mental health support, and more — curated by community.</p>
       </div>
-      <p class="desc reveal">
-        Shelters, legal services, medical care, mental health support, and more — curated by community.
-      </p>
-    </div>
-
-    <div class="loc-grid">
-      <a href="resources.html?city=albuquerque" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Albuquerque</div>
-        <div class="loc-count">34+ resources</div>
-      </a>
-      <a href="resources.html?city=santa-fe" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Santa Fe</div>
-        <div class="loc-count">Resources available</div>
-      </a>
-      <a href="resources.html?city=las-cruces" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Las Cruces</div>
-        <div class="loc-count">Resources available</div>
-      </a>
-      <a href="resources.html?city=taos" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Taos</div>
-        <div class="loc-count">Resources available</div>
-      </a>
-      <a href="resources.html?city=farmington" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Farmington</div>
-        <div class="loc-count">Resources available</div>
-      </a>
-      <a href="resources.html?city=hobbs" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Hobbs</div>
-        <div class="loc-count">Resources available</div>
-      </a>
-      <a href="resources.html?city=carlsbad" class="loc-card reveal">
-        <span class="loc-tag">City</span>
-        <div class="loc-name">Carlsbad</div>
-        <div class="loc-count">Resources available</div>
-      </a>
-      <a href="resources.html" class="loc-card loc-more reveal">
-        <span class="loc-tag">National + international</span>
-        <div class="loc-name">More locations</div>
-        <div class="loc-count">Browse the directory →</div>
-      </a>
-    </div>
-
-    <div class="loc-cta-row reveal">
-      <a href="resources.html" class="btn btn-primary">Search all resources <span class="arrow">→</span></a>
+      <div class="nm-map reveal"><svg class="nm-c" viewBox="0 0 400 440" role="img" aria-label="Map of New Mexico showing cities with resources"><path class="fill" d="M24.673,10.047L71.671,11.276L120.372,12.095L152.56,12.397L152.978,12.972L192.371,13.054L256.117,12.777L263.319,12.837L302.285,12.325L338.063,11.314L381.245,10L382.116,39.376L382.127,46.933L379.784,47.002L380.392,60.514L381.894,111.867L382.483,139.428L385.298,235.817L385.288,250.56L385.617,277.048L385.892,286.507L385.917,302.644L388.147,379.557L347.01,380.68L296.197,381.619L239.981,382.121L165.549,382.103L165.285,388.512L163.702,389.644L164.362,392.06L166.605,393.66L166.371,395.118L169.969,396.408L171.087,398.19L122.845,397.755L65.591,396.764L64.866,430L11.853,428.687L17.294,248.031L17.73,240.863L17.787,231.65L19.168,193.051L20.935,134.318L20.776,132.407L21.445,117.367Z"/><path class="line" d="M24.673,10.047L71.671,11.276L120.372,12.095L152.56,12.397L152.978,12.972L192.371,13.054L256.117,12.777L263.319,12.837L302.285,12.325L338.063,11.314L381.245,10L382.116,39.376L382.127,46.933L379.784,47.002L380.392,60.514L381.894,111.867L382.483,139.428L385.298,235.817L385.288,250.56L385.617,277.048L385.892,286.507L385.917,302.644L388.147,379.557L347.01,380.68L296.197,381.619L239.981,382.121L165.549,382.103L165.285,388.512L163.702,389.644L164.362,392.06L166.605,393.66L166.371,395.118L169.969,396.408L171.087,398.19L122.845,397.755L65.591,396.764L64.866,430L11.853,428.687L17.294,248.031L17.73,240.863L17.787,231.65L19.168,193.051L20.935,134.318L20.776,132.407L21.445,117.367Z"/><a class="pin" data-city="albuquerque" href="resources.html?city=albuquerque" aria-label="Albuquerque resources"><circle class="ring" cx="165" cy="154.1" r="5"/><circle class="dot" cx="165" cy="154.1" r="3.6"/><text class="lbl" x="155" y="157.7" text-anchor="end">Albuquerque</text></a><a class="pin sf" data-city="santa-fe" href="resources.html?city=santa-fe" aria-label="Santa Fe resources"><circle class="ring" cx="208" cy="109.7" r="5"/><circle class="dot" cx="208" cy="109.7" r="3.6"/><text class="lbl" x="218" y="113.3" text-anchor="start">Santa Fe</text></a><a class="pin" data-city="las-cruces" href="resources.html?city=las-cruces" aria-label="Las Cruces resources"><circle class="ring" cx="156.6" cy="358.5" r="5"/><circle class="dot" cx="156.6" cy="358.5" r="3.6"/><text class="lbl" x="146.6" y="362.1" text-anchor="end">Las Cruces</text></a><a class="pin" data-city="taos" href="resources.html?city=taos" aria-label="Taos resources"><circle class="ring" cx="229.7" cy="56.4" r="5"/><circle class="dot" cx="229.7" cy="56.4" r="3.6"/><text class="lbl" x="239.7" y="60.0" text-anchor="start">Taos</text></a><a class="pin" data-city="farmington" href="resources.html?city=farmington" aria-label="Farmington resources"><circle class="ring" cx="73.6" cy="31.3" r="5"/><circle class="dot" cx="73.6" cy="31.3" r="3.6"/><text class="lbl" x="83.6" y="34.9" text-anchor="start">Farmington</text></a><a class="pin" data-city="hobbs" href="resources.html?city=hobbs" aria-label="Hobbs resources"><circle class="ring" cx="382.2" cy="327.8" r="5"/><circle class="dot" cx="382.2" cy="327.8" r="3.6"/><text class="lbl" x="372.2" y="331.40000000000003" text-anchor="end">Hobbs</text></a><a class="pin" data-city="carlsbad" href="resources.html?city=carlsbad" aria-label="Carlsbad resources"><circle class="ring" cx="314.7" cy="350.2" r="5"/><circle class="dot" cx="314.7" cy="350.2" r="3.6"/><text class="lbl" x="304.7" y="353.8" text-anchor="end">Carlsbad</text></a></svg></div>
+      <div class="loc2-cards">
+        <div class="loc-grid"><a href="resources.html?city=albuquerque" data-city="albuquerque" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Albuquerque</div><div class="loc-count">34+ resources</div></a><a href="resources.html?city=santa-fe" data-city="santa-fe" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Santa Fe</div><div class="loc-count">Resources available</div></a><a href="resources.html?city=las-cruces" data-city="las-cruces" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Las Cruces</div><div class="loc-count">Resources available</div></a><a href="resources.html?city=taos" data-city="taos" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Taos</div><div class="loc-count">Resources available</div></a><a href="resources.html?city=farmington" data-city="farmington" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Farmington</div><div class="loc-count">Resources available</div></a><a href="resources.html?city=hobbs" data-city="hobbs" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Hobbs</div><div class="loc-count">Resources available</div></a><a href="resources.html?city=carlsbad" data-city="carlsbad" class="loc-card reveal"><span class="loc-tag">City</span><div class="loc-name">Carlsbad</div><div class="loc-count">Resources available</div></a><a href="resources.html" class="loc-card loc-more reveal"><span class="loc-tag">National + international</span><div class="loc-name">More locations</div><div class="loc-count">Browse the directory →</div></a></div>
+        <div class="loc-cta-row reveal"><a href="resources.html" class="btn btn-primary">Search all resources <span class="arrow">→</span></a></div>
+      </div>
     </div>
   </section>
 
@@ -1079,5 +1087,16 @@
   </script>
   <!-- End of Tawk.to Script -->
   <script src="js/visits.js" defer></script>
+<script>
+    // pins <-> cards highlight each other
+    (function(){
+      var els=document.querySelectorAll('[data-city]');
+      els.forEach(function(el){
+        function set(on){ document.querySelectorAll('[data-city="'+el.getAttribute('data-city')+'"]').forEach(function(m){ m.classList.toggle('on',on); }); }
+        el.addEventListener('mouseenter',function(){set(true)}); el.addEventListener('mouseleave',function(){set(false)});
+        el.addEventListener('focus',function(){set(true)}); el.addEventListener('blur',function(){set(false)});
+      });
+    })();
+  </script>
 </body>
 </html>
